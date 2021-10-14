@@ -1,2 +1,2 @@
-# bingle
-CS410 MOOC Video Search 
+# Bingle
+CS410 MOOC Video Segment Search 
