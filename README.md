@@ -1,2 +1,2 @@
 # Bingle
-CS410 MOOC Video Segment Search 
+CS410 Highlight Search Engine
