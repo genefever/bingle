@@ -1,0 +1,37 @@
+{
+  "name": "bingle",
+  "version": "1.0.0",
+  "description": "Highlight Search Engine",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --watch --progress --config webpack.dev.js",
+    "build": "webpack --watch --progress --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/genefever/bingle.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/genefever/bingle/issues"
+  },
+  "homepage": "https://github.com/genefever/bingle#readme",
+  "devDependencies": {
+    "@types/chrome": "^0.0.162",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.5.0",
+    "html-webpack-plugin": "^5.5.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.4",
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-merge": "^5.8.0"
+  }
+}
