@@ -8,7 +8,7 @@ const InfoCardContainer: React.FC<{
   return (
     <Box mx={'4px'} my={'16px'}>
       <Card>
-        <CardContent></CardContent>
+        <CardContent>{children}</CardContent>
       </Card>
     </Box>
   )
@@ -46,7 +46,10 @@ const InfoCard: React.FC<{
   return (
     <InfoCardContainer>
       <Typography variant="h5">{infoData.name}</Typography>
-      <Typography variant="body1">{infoData.main.feels_like}</Typography>
+      <Typography variant="body1">{infoData.main.temp}</Typography>
+      <Typography variant="body1">
+        Feels like: {infoData.main.feels_like}
+      </Typography>
     </InfoCardContainer>
   )
 }
