@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+import { Box } from '@material-ui/core'
 import 'fontsource-roboto'
 import './popup.css'
 import InfoCard from './InfoCard'
@@ -11,12 +12,22 @@ const App: React.FC<{}> = () => {
     'Sunnyvale',
   ])
 
+  const handleLearnMoreButtonClick = (index: number) => {
+    // TODO open Wikipedia page based on link at index
+    console.log(index)
+  }
+
   return (
-    <div>
+    <Box mx="8px" my="16px">
       {candidates.map((candidate, index) => (
-        <InfoCard query={candidate} key={index} />
+        <InfoCard
+          key={index}
+          onLearnMore={() => handleLearnMoreButtonClick(index)}
+          query={candidate}
+        />
       ))}
-    </div>
+      <Box height="16px" />
+    </Box>
   )
 }
 

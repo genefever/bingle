@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Card, CardContent, Typography } from '@material-ui/core'
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+} from '@material-ui/core'
 import { fetchWikiData, WikiData } from '../../utils/api'
 
 const InfoCardContainer: React.FC<{
   children: React.ReactNode
-}> = ({ children }) => {
+  onLearnMore?: () => void
+}> = ({ children, onLearnMore }) => {
   return (
     <Box mx={'4px'} my={'16px'}>
       <Card>
         <CardContent>{children}</CardContent>
+        <CardActions>
+          {onLearnMore && (
+            <Button onClick={onLearnMore} color="primary" size="small">
+              Learn More
+            </Button>
+          )}
+        </CardActions>
       </Card>
     </Box>
   )
@@ -18,7 +33,8 @@ type InfoCardState = 'loading' | 'error' | 'ready'
 
 const InfoCard: React.FC<{
   query: string
-}> = ({ query }) => {
+  onLearnMore?: () => void
+}> = ({ query, onLearnMore }) => {
   const [infoData, setInfoData] = useState<WikiData | null>(null)
   const [cardState, setCardState] = useState<InfoCardState>('loading')
 
@@ -44,7 +60,7 @@ const InfoCard: React.FC<{
   }
 
   return (
-    <InfoCardContainer>
+    <InfoCardContainer onLearnMore={onLearnMore}>
       <Typography variant="h5">{infoData.name}</Typography>
       <Typography variant="body1">{infoData.main.temp}</Typography>
       <Typography variant="body1">
