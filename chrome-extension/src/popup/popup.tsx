@@ -6,6 +6,7 @@ import './popup.css'
 import InfoCard from './InfoCard'
 
 const App: React.FC<{}> = () => {
+  const [expanded, setExpanded] = useState<boolean>(false)
   const [candidates, setCandidates] = useState<string[]>([
     'Toronto',
     'New York',
@@ -17,11 +18,17 @@ const App: React.FC<{}> = () => {
     console.log(index)
   }
 
+  const handleExpandButtonClick = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
+  }
+
   return (
     <Box mx="8px" my="16px">
       {candidates.map((candidate, index) => (
         <InfoCard
+          expanded={expanded}
           key={index}
+          onExpand={() => handleExpandButtonClick(`panel${index}`)}
           onLearnMore={() => handleLearnMoreButtonClick(index)}
           query={candidate}
         />
