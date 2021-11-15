@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Box } from '@mui/material'
 import 'fontsource-roboto'
-import './popup.css'
-import InfoCard from '../components/InfoCard'
+import InfoCard from '../InfoCard'
 
-const App: React.FC<{}> = () => {
+const Popup: React.FC<{}> = () => {
   const [expanded, setExpanded] = useState<string | false>('panel0')
 
   const [candidates, setCandidates] = useState<string[]>([
@@ -31,11 +30,8 @@ const App: React.FC<{}> = () => {
           query={candidate}
         />
       ))}
-      <Box height="16px" />
     </Box>
   )
 }
 
-const root = document.createElement('div')
-document.body.appendChild(root)
-ReactDOM.render(<App />, root)
+export default Popup

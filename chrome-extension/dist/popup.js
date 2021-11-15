@@ -82,10 +82,10 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./src/popup/InfoCard/InfoCard.tsx":
-/*!*****************************************!*\
-  !*** ./src/popup/InfoCard/InfoCard.tsx ***!
-  \*****************************************/
+/***/ "./src/components/InfoCard/InfoCard.tsx":
+/*!**********************************************!*\
+  !*** ./src/components/InfoCard/InfoCard.tsx ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -136,17 +136,17 @@ const InfoCard = ({ expanded, query, onLearnMore, index, setExpanded }) => {
 
 /***/ }),
 
-/***/ "./src/popup/InfoCard/index.tsx":
-/*!**************************************!*\
-  !*** ./src/popup/InfoCard/index.tsx ***!
-  \**************************************/
+/***/ "./src/components/InfoCard/index.tsx":
+/*!*******************************************!*\
+  !*** ./src/components/InfoCard/index.tsx ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _InfoCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InfoCard */ "./src/popup/InfoCard/InfoCard.tsx");
+/* harmony import */ var _InfoCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InfoCard */ "./src/components/InfoCard/InfoCard.tsx");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_InfoCard__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
@@ -165,7 +165,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
 /* harmony import */ var fontsource_roboto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! fontsource-roboto */ "./node_modules/fontsource-roboto/index.css");
 /* harmony import */ var _popup_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./popup.css */ "./src/popup/popup.css");
-/* harmony import */ var _InfoCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InfoCard */ "./src/popup/InfoCard/index.tsx");
+/* harmony import */ var _components_InfoCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/InfoCard */ "./src/components/InfoCard/index.tsx");
 
 
 
@@ -184,7 +184,7 @@ const App = () => {
         console.log(index);
     };
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { mx: "8px", my: "16px" },
-        candidates.map((candidate, index) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_InfoCard__WEBPACK_IMPORTED_MODULE_4__["default"], { expanded: expanded, setExpanded: setExpanded, index: index, key: index, onLearnMore: () => handleLearnMoreButtonClick(index), query: candidate }))),
+        candidates.map((candidate, index) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_InfoCard__WEBPACK_IMPORTED_MODULE_4__["default"], { expanded: expanded, setExpanded: setExpanded, index: index, key: index, onLearnMore: () => handleLearnMoreButtonClick(index), query: candidate }))),
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { height: "16px" })));
 };
 const root = document.createElement('div');
