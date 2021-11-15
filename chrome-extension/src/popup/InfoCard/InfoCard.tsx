@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, SetStateAction } from 'react'
 import {
   Accordion,
   AccordionDetails,
@@ -14,7 +14,7 @@ type InfoCardState = 'loading' | 'error' | 'ready'
 
 const InfoCard: React.FC<{
   expanded: string | boolean
-  setExpanded
+  setExpanded: React.Dispatch<SetStateAction<string | boolean>>
   query: string
   onLearnMore?: () => void
   index: number
@@ -24,7 +24,6 @@ const InfoCard: React.FC<{
 
   const handleExpandButtonClick =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      console.log('yeah')
       setExpanded(isExpanded ? panel : false)
     }
 
@@ -37,17 +36,17 @@ const InfoCard: React.FC<{
       .catch((err) => setCardState('error'))
   }, [query])
 
-  // if (cardState == 'loading' || cardState == 'error') {
-  //   return (
-  //     <InfoCardContainer>
-  //       <Typography variant="body1">
-  //         {cardState == 'loading'
-  //           ? 'Loading...'
-  //           : 'Could not retrieve information for this query.'}
-  //       </Typography>
-  //     </InfoCardContainer>
-  //   )
-  // }
+  if (cardState == 'loading' || cardState == 'error') {
+    return (
+      <Box mx={'4px'} my={'16px'}>
+        <Typography variant="body1">
+          {cardState == 'loading'
+            ? 'Loading...'
+            : 'Could not retrieve information for this query.'}
+        </Typography>
+      </Box>
+    )
+  }
 
   return (
     <Accordion
@@ -55,21 +54,18 @@ const InfoCard: React.FC<{
       onChange={handleExpandButtonClick(`panel${index}`)}
     >
       <AccordionSummary expandIcon={<ExpandMore />}>
-        <Typography sx={{ width: '33%', flexShrink: 0 }}>
-          Title
-          {/* {infoData.name} */}
+        <Typography sx={{ width: '50%', flexShrink: 0 }}>
+          {infoData.name}
         </Typography>
         <Typography sx={{ color: 'text.secondary' }}>
-          {/* {infoData.main.temp} */} Description
+          {onLearnMore && (
+            <Button onClick={onLearnMore} color="primary" size="small">
+              Learn More
+            </Button>
+          )}
         </Typography>
       </AccordionSummary>
       <AccordionDetails>Hi</AccordionDetails>
-
-      {onLearnMore && (
-        <Button onClick={onLearnMore} color="primary" size="small">
-          Learn More
-        </Button>
-      )}
     </Accordion>
   )
 }
