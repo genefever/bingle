@@ -93,25 +93,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Card/Card.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/CardContent/CardContent.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/CardActions/CardActions.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Accordion/Accordion.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionSummary/AccordionSummary.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionDetails/AccordionDetails.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var _mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/icons-material/ExpandMore */ "./node_modules/@mui/icons-material/ExpandMore.js");
 /* harmony import */ var _utils_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/api */ "./src/utils/api.ts");
 
 
 
-const InfoCardContainer = ({ children, onLearnMore }) => {
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["default"], { mx: '4px', my: '16px' },
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["default"], null,
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"], null, children),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], null, onLearnMore && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], { onClick: onLearnMore, color: "primary", size: "small" }, "Learn More"))))));
-};
-const InfoCard = ({ query, onLearnMore }) => {
+
+const InfoCard = ({ expanded, query, onLearnMore, index, setExpanded }) => {
     const [infoData, setInfoData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
     const [cardState, setCardState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('loading');
+    const handleExpandButtonClick = (panel) => (event, isExpanded) => {
+        console.log('yeah');
+        setExpanded(isExpanded ? panel : false);
+    };
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
         (0,_utils_api__WEBPACK_IMPORTED_MODULE_1__.fetchWikiData)(query)
             .then((data) => {
@@ -120,18 +119,23 @@ const InfoCard = ({ query, onLearnMore }) => {
         })
             .catch((err) => setCardState('error'));
     }, [query]);
-    if (cardState == 'loading' || cardState == 'error') {
-        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(InfoCardContainer, null,
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], { variant: "body1" }, cardState == 'loading'
-                ? 'Loading...'
-                : 'Could not retrieve information for this query.')));
-    }
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(InfoCardContainer, { onLearnMore: onLearnMore },
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], { variant: "h5" }, infoData.name),
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], { variant: "body1" }, infoData.main.temp),
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], { variant: "body1" },
-            "Feels like: ",
-            infoData.main.feels_like)));
+    // if (cardState == 'loading' || cardState == 'error') {
+    //   return (
+    //     <InfoCardContainer>
+    //       <Typography variant="body1">
+    //         {cardState == 'loading'
+    //           ? 'Loading...'
+    //           : 'Could not retrieve information for this query.'}
+    //       </Typography>
+    //     </InfoCardContainer>
+    //   )
+    // }
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], { expanded: expanded === `panel${index}`, onChange: handleExpandButtonClick(`panel${index}`) },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], { expandIcon: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_4__["default"], null) },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { sx: { width: '33%', flexShrink: 0 } }, "Title"),
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { sx: { color: 'text.secondary' } }, " Description")),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], null, "Hi"),
+        onLearnMore && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], { onClick: onLearnMore, color: "primary", size: "small" }, "Learn More"))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InfoCard);
 
@@ -164,7 +168,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
 /* harmony import */ var fontsource_roboto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! fontsource-roboto */ "./node_modules/fontsource-roboto/index.css");
 /* harmony import */ var _popup_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./popup.css */ "./src/popup/popup.css");
 /* harmony import */ var _InfoCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InfoCard */ "./src/popup/InfoCard/index.tsx");
@@ -175,6 +179,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const App = () => {
+    const [expanded, setExpanded] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('panel0');
     const [candidates, setCandidates] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([
         'Toronto',
         'New York',
@@ -184,9 +189,9 @@ const App = () => {
         // TODO open Wikipedia page based on link at index
         console.log(index);
     };
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], { mx: "8px", my: "16px" },
-        candidates.map((candidate, index) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_InfoCard__WEBPACK_IMPORTED_MODULE_4__["default"], { key: index, onLearnMore: () => handleLearnMoreButtonClick(index), query: candidate }))),
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], { height: "16px" })));
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { mx: "8px", my: "16px" },
+        candidates.map((candidate, index) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_InfoCard__WEBPACK_IMPORTED_MODULE_4__["default"], { expanded: expanded, setExpanded: setExpanded, index: index, key: index, onLearnMore: () => handleLearnMoreButtonClick(index), query: candidate }))),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { height: "16px" })));
 };
 const root = document.createElement('div');
 document.body.appendChild(root);
@@ -422,7 +427,7 @@ function fetchWikiData(query) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_material-ui_core_esm_Box_Box_js-node_modules_material-ui_core_esm_Button-4ccfa0"], () => (__webpack_require__("./src/popup/popup.tsx")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_mui_icons-material_ExpandMore_js-node_modules_mui_material_Accordion_Acc-ef7a29"], () => (__webpack_require__("./src/popup/popup.tsx")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

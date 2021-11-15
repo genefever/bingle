@@ -5,54 +5,28 @@ import {
   AccordionSummary,
   Box,
   Button,
-  Card,
-  CardActions,
-  CardContent,
   Typography,
-} from '@material-ui/core'
-import { ExpandMore } from '@mui/icons-material'
+} from '@mui/material'
+import ExpandMore from '@mui/icons-material/ExpandMore'
 import { fetchWikiData, WikiData } from '../../utils/api'
-
-const InfoCardContainer: React.FC<{
-  children: React.ReactNode
-  expanded: boolean
-  key: number
-  onExpand?: (panel: string) => void
-  onLearnMore?: () => void
-}> = ({ children, onLearnMore, onExpand, expanded, key }) => {
-  return (
-    <Box mx={'4px'} my={'16px'}>
-      <Accordion expanded={expanded} onChange={() => onExpand(`panel${key}`)}>
-        <AccordionSummary expandIcon={<ExpandMore />}>
-          {children}
-        </AccordionSummary>
-        <AccordionDetails></AccordionDetails>
-      </Accordion>
-      {/* <Card>
-        <CardContent>{children}</CardContent>
-        <CardActions>
-          {onLearnMore && (
-            <Button onClick={onLearnMore} color="primary" size="small">
-              Learn More
-            </Button>
-          )}
-        </CardActions> 
-      </Card>*/}
-    </Box>
-  )
-}
 
 type InfoCardState = 'loading' | 'error' | 'ready'
 
 const InfoCard: React.FC<{
-  expanded: boolean
-  key: number
+  expanded: string | boolean
+  setExpanded
   query: string
-  onExpand: (panel: string) => void
   onLearnMore?: () => void
-}> = ({ expanded, query, onExpand, onLearnMore, key }) => {
+  index: number
+}> = ({ expanded, query, onLearnMore, index, setExpanded }) => {
   const [infoData, setInfoData] = useState<WikiData | null>(null)
   const [cardState, setCardState] = useState<InfoCardState>('loading')
+
+  const handleExpandButtonClick =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      console.log('yeah')
+      setExpanded(isExpanded ? panel : false)
+    }
 
   useEffect(() => {
     fetchWikiData(query)
@@ -76,29 +50,28 @@ const InfoCard: React.FC<{
   // }
 
   return (
-    <InfoCardContainer
-      expanded={expanded}
-      key={key}
-      onExpand={onExpand}
-      onLearnMore={onLearnMore}
+    <Accordion
+      expanded={expanded === `panel${index}`}
+      onChange={handleExpandButtonClick(`panel${index}`)}
     >
-      <Typography variant="h5">{infoData.name}</Typography>
-      <Typography variant="body1">{infoData.main.temp}</Typography>
-      <Typography variant="body1">
-        Feels like: {infoData.main.feels_like}
-      </Typography>
-    </InfoCardContainer>
-  )
+      <AccordionSummary expandIcon={<ExpandMore />}>
+        <Typography sx={{ width: '33%', flexShrink: 0 }}>
+          Title
+          {/* {infoData.name} */}
+        </Typography>
+        <Typography sx={{ color: 'text.secondary' }}>
+          {/* {infoData.main.temp} */} Description
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails>Hi</AccordionDetails>
 
-  // return (
-  //   <InfoCardContainer onLearnMore={onLearnMore}>
-  //     <Typography variant="h5">{infoData.name}</Typography>
-  //     <Typography variant="body1">{infoData.main.temp}</Typography>
-  //     <Typography variant="body1">
-  //       Feels like: {infoData.main.feels_like}
-  //     </Typography>
-  //   </InfoCardContainer>
-  // )
+      {onLearnMore && (
+        <Button onClick={onLearnMore} color="primary" size="small">
+          Learn More
+        </Button>
+      )}
+    </Accordion>
+  )
 }
 
 export default InfoCard

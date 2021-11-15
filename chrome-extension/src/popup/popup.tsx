@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import { Box } from '@material-ui/core'
+import { Box } from '@mui/material'
 import 'fontsource-roboto'
 import './popup.css'
 import InfoCard from './InfoCard'
 
 const App: React.FC<{}> = () => {
-  const [expanded, setExpanded] = useState<boolean>(false)
+  const [expanded, setExpanded] = useState<string | false>('panel0')
+
   const [candidates, setCandidates] = useState<string[]>([
     'Toronto',
     'New York',
@@ -18,17 +19,14 @@ const App: React.FC<{}> = () => {
     console.log(index)
   }
 
-  const handleExpandButtonClick = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false)
-  }
-
   return (
     <Box mx="8px" my="16px">
       {candidates.map((candidate, index) => (
         <InfoCard
           expanded={expanded}
+          setExpanded={setExpanded}
+          index={index}
           key={index}
-          onExpand={() => handleExpandButtonClick(`panel${index}`)}
           onLearnMore={() => handleLearnMoreButtonClick(index)}
           query={candidate}
         />
