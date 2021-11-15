@@ -57,15 +57,23 @@ const InfoCard: React.FC<{
         <Typography sx={{ width: '50%', flexShrink: 0 }}>
           {infoData.name}
         </Typography>
-        <Typography sx={{ color: 'text.secondary' }}>
-          {onLearnMore && (
-            <Button onClick={onLearnMore} color="primary" size="small">
-              Learn More
-            </Button>
-          )}
-        </Typography>
+        {/* <Typography sx={{ color: 'text.secondary' }}>
+          
+        </Typography> */}
       </AccordionSummary>
       <AccordionDetails>Hi</AccordionDetails>
+      <AccordionDetails>
+        {onLearnMore && (
+          <Button
+            onClick={onLearnMore}
+            variant="contained"
+            color="primary"
+            size="small"
+          >
+            Learn More
+          </Button>
+        )}
+      </AccordionDetails>
     </Accordion>
   )
 }
