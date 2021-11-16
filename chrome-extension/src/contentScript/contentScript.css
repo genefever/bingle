@@ -1,8 +1,22 @@
 .overlayCard {
   position: fixed;
-  left: 5%;
+  right: 5%;
   top: 15%;
-  width: 240px;
+  width: 300px;
   background-color: #f5f5f5 !important;
   z-index: 99999;
+}
+
+.overlayCardHeader {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  background: -webkit-linear-gradient(
+    45deg,
+    #fe6b8b 30%,
+    #ff8e53 90%
+  ) !important;
+}
+
+.css-nrdprl-MuiTypography-root {
+  color: #f5f5f5 !important;
 }

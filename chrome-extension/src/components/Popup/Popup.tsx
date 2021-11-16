@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import { Box } from '@mui/material'
 import 'fontsource-roboto'
 import InfoCard from '../InfoCard'
 
@@ -19,7 +18,7 @@ const Popup: React.FC<{}> = () => {
   }
 
   return (
-    <Box mx="8px" my="16px">
+    <>
       {candidates.map((candidate, index) => (
         <InfoCard
           expanded={expanded}
@@ -30,7 +29,7 @@ const Popup: React.FC<{}> = () => {
           query={candidate}
         />
       ))}
-    </Box>
+    </>
   )
 }
 

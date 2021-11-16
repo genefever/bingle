@@ -125,11 +125,15 @@ const InfoCard = ({ expanded, query, onLearnMore, index, setExpanded }) => {
                 ? 'Loading...'
                 : 'Could not retrieve information for this query.')));
     }
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], { expanded: expanded === `panel${index}`, onChange: handleExpandButtonClick(`panel${index}`) },
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], { disableGutters: true, expanded: expanded === `panel${index}`, onChange: handleExpandButtonClick(`panel${index}`) },
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { expandIcon: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_6__["default"], null) },
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], { sx: { width: '50%', flexShrink: 0 } }, infoData.name)),
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], null, "Hi"),
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], null, onLearnMore && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], { onClick: onLearnMore, variant: "contained", color: "primary", size: "small" }, "Learn More")))));
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], null, onLearnMore && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], { style: {
+                color: '#2196f3',
+                backgroundColor: 'transparent',
+                padding: 0,
+            }, onClick: onLearnMore, size: "small" }, "Learn More")))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InfoCard);
 

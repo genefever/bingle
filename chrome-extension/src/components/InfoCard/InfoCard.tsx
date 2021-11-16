@@ -50,6 +50,7 @@ const InfoCard: React.FC<{
 
   return (
     <Accordion
+      disableGutters
       expanded={expanded === `panel${index}`}
       onChange={handleExpandButtonClick(`panel${index}`)}
     >
@@ -65,9 +66,12 @@ const InfoCard: React.FC<{
       <AccordionDetails>
         {onLearnMore && (
           <Button
+            style={{
+              color: '#2196f3',
+              backgroundColor: 'transparent',
+              padding: 0,
+            }}
             onClick={onLearnMore}
-            variant="contained"
-            color="primary"
             size="small"
           >
             Learn More
