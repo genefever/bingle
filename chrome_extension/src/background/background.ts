@@ -1,4 +1,10 @@
+import { setStoredOptions } from '../utils/storage'
+
 chrome.runtime.onInstalled.addListener((details) => {
+  setStoredOptions({
+    hasAutoOverlay: false,
+  })
+
   chrome.contextMenus.create({
     title: 'Search on Bingle',
     id: 'contextMenu1',

@@ -1,37 +1,66 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { Box } from '@mui/material'
+import {
+  Box,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+} from '@mui/material'
 import 'fontsource-roboto'
 import './popup.css'
-import InfoCard from '../components/InfoCard'
+import {
+  getStoredOptions,
+  setStoredOptions,
+  LocalStorageOptions,
+} from '../utils/storage'
 
 const App: React.FC<{}> = () => {
-  const [expanded, setExpanded] = useState<string | false>('panel0')
+  const [options, setOptions] = useState<LocalStorageOptions | null>(null)
 
-  const [candidates, setCandidates] = useState<string[]>([
-    'Toronto',
-    'New York',
-    'Sunnyvale',
-  ])
+  useEffect(() => {
+    // Set options from saved options in local storage.
+    getStoredOptions().then((options) => setOptions(options))
+  })
 
-  const handleLearnMoreButtonClick = (index: number) => {
-    // TODO open Wikipedia page based on link at index
-    console.log(index)
+  const handleOptionsChange = () => {
+    // TODO Update toggle
+    // Iterate through all options and only set true to option that's selected.
+    // Rest should be false.
+    // const updateOptions: LocalStorageOptions = {
+    // }
+    // setStoredOptions(options).then(() => {
+    //   setOptions
+    // })
+  }
+
+  if (!options) {
+    return null
   }
 
   return (
-    <Box mx="8px" my="16px">
-      {candidates.map((candidate, index) => (
-        <InfoCard
-          expanded={expanded}
-          setExpanded={setExpanded}
-          index={index}
-          key={index}
-          onLearnMore={() => handleLearnMoreButtonClick(index)}
-          query={candidate}
-        />
-      ))}
-      <Box height="16px" />
+    <Box px="8px" py="4px">
+      <FormControl component="fieldset">
+        <FormLabel component="legend">Bingle Display Settings</FormLabel>
+        <RadioGroup defaultValue="female" name="radio-buttons-group">
+          <FormControlLabel
+            value={options.hasAutoOverlay}
+            control={<Radio />}
+            label="Auto"
+          />
+          <FormControlLabel
+            value="toggleOverlay"
+            control={<Radio />}
+            label="Toggle"
+          />
+          <FormControlLabel
+            value="disableOverlay"
+            control={<Radio />}
+            label="Disable"
+          />
+        </RadioGroup>
+      </FormControl>
     </Box>
   )
 }

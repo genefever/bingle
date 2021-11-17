@@ -22,5 +22,5 @@
       "js": ["contentScript.js"]
     }
   ],
-  "permissions": ["contextMenus"]
+  "permissions": ["contextMenus", "storage"]
 }

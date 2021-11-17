@@ -4,6 +4,11 @@ const HtmlPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
+  output: {
+    publicPath: '',
+    filename: '[name].js',
+    path: path.resolve('dist'),
+  },
   entry: {
     popup: path.resolve('src/popup/popup.tsx'),
     options: path.resolve('src/options/options.tsx'),
@@ -43,10 +48,6 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-  },
-  output: {
-    filename: '[name].js',
-    path: path.resolve('dist'),
   },
   optimization: {
     splitChunks: {
