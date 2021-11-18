@@ -11,28 +11,24 @@ import {
 import 'fontsource-roboto'
 import './popup.css'
 import {
-  getStoredOptions,
-  setStoredOptions,
-  LocalStorageOptions,
+  getStoredOverlayOption,
+  setStoredOverlayOption,
+  LocalStorage,
 } from '../utils/storage'
 
 const App: React.FC<{}> = () => {
-  const [options, setOptions] = useState<LocalStorageOptions | null>(null)
+  const [options, setOptions] = useState<LocalStorage | null>(null)
 
   useEffect(() => {
     // Set options from saved options in local storage.
-    getStoredOptions().then((options) => setOptions(options))
+    getStoredOverlayOption().then((options) => setOptions(options))
   }, [])
 
   const handleOptionsChange = (e) => {
     const selectedValue = e.target.value
-    const updateOptions: LocalStorageOptions = {
-      ...options,
-      overlaySetting: selectedValue,
-    }
 
-    setStoredOptions(updateOptions).then(() => {
-      setOptions(updateOptions)
+    setStoredOverlayOption(selectedValue).then(() => {
+      setOptions(selectedValue)
     })
   }
 
@@ -45,7 +41,7 @@ const App: React.FC<{}> = () => {
       <FormControl component="fieldset">
         <FormLabel component="legend">Bingle Display Settings</FormLabel>
         <RadioGroup
-          value={options.overlaySetting}
+          value={options.overlayOption}
           onChange={(e) => handleOptionsChange(e)}
         >
           <FormControlLabel value="auto" control={<Radio />} label="Auto" />

@@ -10,18 +10,41 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "setStoredOptions": () => (/* binding */ setStoredOptions),
-/* harmony export */   "getStoredOptions": () => (/* binding */ getStoredOptions)
+/* harmony export */   "setStoredOverlayOption": () => (/* binding */ setStoredOverlayOption),
+/* harmony export */   "getStoredOverlayOption": () => (/* binding */ getStoredOverlayOption),
+/* harmony export */   "setStoredIsActive": () => (/* binding */ setStoredIsActive),
+/* harmony export */   "getStoredIsActive": () => (/* binding */ getStoredIsActive)
 /* harmony export */ });
-function setStoredOptions(options) {
+function setStoredOverlayOption(overlayOption) {
+    const val = {
+        overlayOption,
+    };
     return new Promise((resolve) => {
-        chrome.storage.local.set(options, () => {
+        chrome.storage.local.set(val, () => {
             resolve();
         });
     });
 }
-function getStoredOptions() {
-    const keys = ['overlaySetting', 'isActive'];
+function getStoredOverlayOption() {
+    const keys = ['overlayOption'];
+    return new Promise((resolve) => {
+        chrome.storage.local.get(keys, (res) => {
+            resolve(res);
+        });
+    });
+}
+function setStoredIsActive(isActive) {
+    const val = {
+        isActive,
+    };
+    return new Promise((resolve) => {
+        chrome.storage.local.set(val, () => {
+            resolve();
+        });
+    });
+}
+function getStoredIsActive() {
+    const keys = ['isActive'];
     return new Promise((resolve) => {
         chrome.storage.local.get(keys, (res) => {
             resolve(res);
@@ -98,10 +121,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storage */ "./src/utils/storage.ts");
 
 chrome.runtime.onInstalled.addListener(() => {
-    (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredOptions)({
-        overlaySetting: 'toggle',
-        isActive: false,
-    });
+    (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredIsActive)(false);
+    (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredOverlayOption)('toggle');
     chrome.contextMenus.create({
         title: 'Search on Bingle',
         id: 'contextMenu1',

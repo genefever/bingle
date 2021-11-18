@@ -1,10 +1,8 @@
-import { setStoredOptions } from '../utils/storage'
+import { setStoredIsActive, setStoredOverlayOption } from '../utils/storage'
 
 chrome.runtime.onInstalled.addListener(() => {
-  setStoredOptions({
-    overlaySetting: 'toggle',
-    isActive: false,
-  })
+  setStoredIsActive(false)
+  setStoredOverlayOption('toggle')
 
   chrome.contextMenus.create({
     title: 'Search on Bingle',

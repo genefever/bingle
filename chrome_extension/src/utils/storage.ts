@@ -1,22 +1,45 @@
-export interface LocalStorageOptions {
-  overlaySetting: string
-  isActive: boolean
+export interface LocalStorage {
+  overlayOption?: string
+  isActive?: boolean
 }
 
-export type LocalStorageKeys = keyof LocalStorageOptions
+export type LocalStorageKeys = keyof LocalStorage
 
-export function setStoredOptions(options: LocalStorageOptions): Promise<void> {
+export function setStoredOverlayOption(overlayOption: string): Promise<void> {
+  const val: LocalStorage = {
+    overlayOption,
+  }
   return new Promise((resolve) => {
-    chrome.storage.local.set(options, () => {
+    chrome.storage.local.set(val, () => {
       resolve()
     })
   })
 }
 
-export function getStoredOptions(): Promise<LocalStorageOptions> {
-  const keys: LocalStorageKeys[] = ['overlaySetting', 'isActive']
+export function getStoredOverlayOption(): Promise<LocalStorage> {
+  const keys: LocalStorageKeys[] = ['overlayOption']
   return new Promise((resolve) => {
-    chrome.storage.local.get(keys, (res: LocalStorageOptions) => {
+    chrome.storage.local.get(keys, (res: LocalStorage) => {
+      resolve(res)
+    })
+  })
+}
+
+export function setStoredIsActive(isActive: boolean): Promise<void> {
+  const val: LocalStorage = {
+    isActive,
+  }
+  return new Promise((resolve) => {
+    chrome.storage.local.set(val, () => {
+      resolve()
+    })
+  })
+}
+
+export function getStoredIsActive(): Promise<LocalStorage> {
+  const keys: LocalStorageKeys[] = ['isActive']
+  return new Promise((resolve) => {
+    chrome.storage.local.get(keys, (res: LocalStorage) => {
       resolve(res)
     })
   })

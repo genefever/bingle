@@ -110,13 +110,12 @@ const App = () => {
     const [options, setOptions] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
         // Set options from saved options in local storage.
-        (0,_utils_storage__WEBPACK_IMPORTED_MODULE_4__.getStoredOptions)().then((options) => setOptions(options));
+        (0,_utils_storage__WEBPACK_IMPORTED_MODULE_4__.getStoredOverlayOption)().then((options) => setOptions(options));
     }, []);
     const handleOptionsChange = (e) => {
         const selectedValue = e.target.value;
-        const updateOptions = Object.assign(Object.assign({}, options), { overlaySetting: selectedValue });
-        (0,_utils_storage__WEBPACK_IMPORTED_MODULE_4__.setStoredOptions)(updateOptions).then(() => {
-            setOptions(updateOptions);
+        (0,_utils_storage__WEBPACK_IMPORTED_MODULE_4__.setStoredOverlayOption)(selectedValue).then(() => {
+            setOptions(selectedValue);
         });
     };
     if (!options) {
@@ -125,7 +124,7 @@ const App = () => {
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { px: "8px", py: "4px" },
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], { component: "fieldset" },
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], { component: "legend" }, "Bingle Display Settings"),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], { value: options.overlaySetting, onChange: (e) => handleOptionsChange(e) },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], { value: options.overlayOption, onChange: (e) => handleOptionsChange(e) },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "auto", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Auto" }),
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "toggle", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Toggle" }),
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "disable", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Disable" })))));
@@ -145,18 +144,41 @@ react_dom__WEBPACK_IMPORTED_MODULE_1__.render(react__WEBPACK_IMPORTED_MODULE_0__
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "setStoredOptions": () => (/* binding */ setStoredOptions),
-/* harmony export */   "getStoredOptions": () => (/* binding */ getStoredOptions)
+/* harmony export */   "setStoredOverlayOption": () => (/* binding */ setStoredOverlayOption),
+/* harmony export */   "getStoredOverlayOption": () => (/* binding */ getStoredOverlayOption),
+/* harmony export */   "setStoredIsActive": () => (/* binding */ setStoredIsActive),
+/* harmony export */   "getStoredIsActive": () => (/* binding */ getStoredIsActive)
 /* harmony export */ });
-function setStoredOptions(options) {
+function setStoredOverlayOption(overlayOption) {
+    const val = {
+        overlayOption,
+    };
     return new Promise((resolve) => {
-        chrome.storage.local.set(options, () => {
+        chrome.storage.local.set(val, () => {
             resolve();
         });
     });
 }
-function getStoredOptions() {
-    const keys = ['overlaySetting', 'isActive'];
+function getStoredOverlayOption() {
+    const keys = ['overlayOption'];
+    return new Promise((resolve) => {
+        chrome.storage.local.get(keys, (res) => {
+            resolve(res);
+        });
+    });
+}
+function setStoredIsActive(isActive) {
+    const val = {
+        isActive,
+    };
+    return new Promise((resolve) => {
+        chrome.storage.local.set(val, () => {
+            resolve();
+        });
+    });
+}
+function getStoredIsActive() {
+    const keys = ['isActive'];
     return new Promise((resolve) => {
         chrome.storage.local.get(keys, (res) => {
             resolve(res);
