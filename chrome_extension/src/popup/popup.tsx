@@ -22,17 +22,18 @@ const App: React.FC<{}> = () => {
   useEffect(() => {
     // Set options from saved options in local storage.
     getStoredOptions().then((options) => setOptions(options))
-  })
+  }, [])
 
-  const handleOptionsChange = () => {
-    // TODO Update toggle
-    // Iterate through all options and only set true to option that's selected.
-    // Rest should be false.
-    // const updateOptions: LocalStorageOptions = {
-    // }
-    // setStoredOptions(options).then(() => {
-    //   setOptions
-    // })
+  const handleOptionsChange = (e) => {
+    const selectedValue = e.target.value
+    const updateOptions: LocalStorageOptions = {
+      ...options,
+      overlaySetting: selectedValue,
+    }
+
+    setStoredOptions(updateOptions).then(() => {
+      setOptions(updateOptions)
+    })
   }
 
   if (!options) {
@@ -43,19 +44,14 @@ const App: React.FC<{}> = () => {
     <Box px="8px" py="4px">
       <FormControl component="fieldset">
         <FormLabel component="legend">Bingle Display Settings</FormLabel>
-        <RadioGroup defaultValue="female" name="radio-buttons-group">
+        <RadioGroup
+          value={options.overlaySetting}
+          onChange={(e) => handleOptionsChange(e)}
+        >
+          <FormControlLabel value="auto" control={<Radio />} label="Auto" />
+          <FormControlLabel value="toggle" control={<Radio />} label="Toggle" />
           <FormControlLabel
-            value={options.hasAutoOverlay}
-            control={<Radio />}
-            label="Auto"
-          />
-          <FormControlLabel
-            value="toggleOverlay"
-            control={<Radio />}
-            label="Toggle"
-          />
-          <FormControlLabel
-            value="disableOverlay"
+            value="disable"
             control={<Radio />}
             label="Disable"
           />

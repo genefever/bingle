@@ -21,7 +21,7 @@ function setStoredOptions(options) {
     });
 }
 function getStoredOptions() {
-    const keys = ['hasAutoOverlay'];
+    const keys = ['overlaySetting', 'isActive'];
     return new Promise((resolve) => {
         chrome.storage.local.get(keys, (res) => {
             resolve(res);
@@ -97,9 +97,10 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storage */ "./src/utils/storage.ts");
 
-chrome.runtime.onInstalled.addListener((details) => {
+chrome.runtime.onInstalled.addListener(() => {
     (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredOptions)({
-        hasAutoOverlay: false,
+        overlaySetting: 'toggle',
+        isActive: false,
     });
     chrome.contextMenus.create({
         title: 'Search on Bingle',

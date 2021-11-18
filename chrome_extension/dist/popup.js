@@ -111,16 +111,13 @@ const App = () => {
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
         // Set options from saved options in local storage.
         (0,_utils_storage__WEBPACK_IMPORTED_MODULE_4__.getStoredOptions)().then((options) => setOptions(options));
-    });
-    const handleOptionsChange = () => {
-        // TODO Update toggle
-        // Iterate through all options and only set true to option that's selected.
-        // Rest should be false.
-        // const updateOptions: LocalStorageOptions = {
-        // }
-        // setStoredOptions(options).then(() => {
-        //   setOptions
-        // })
+    }, []);
+    const handleOptionsChange = (e) => {
+        const selectedValue = e.target.value;
+        const updateOptions = Object.assign(Object.assign({}, options), { overlaySetting: selectedValue });
+        (0,_utils_storage__WEBPACK_IMPORTED_MODULE_4__.setStoredOptions)(updateOptions).then(() => {
+            setOptions(updateOptions);
+        });
     };
     if (!options) {
         return null;
@@ -128,10 +125,10 @@ const App = () => {
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { px: "8px", py: "4px" },
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], { component: "fieldset" },
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], { component: "legend" }, "Bingle Display Settings"),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], { defaultValue: "female", name: "radio-buttons-group" },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: options.hasAutoOverlay, control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Auto" }),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "toggleOverlay", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Toggle" }),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "disableOverlay", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Disable" })))));
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], { value: options.overlaySetting, onChange: (e) => handleOptionsChange(e) },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "auto", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Auto" }),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "toggle", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Toggle" }),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "disable", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Disable" })))));
 };
 const root = document.createElement('div');
 document.body.appendChild(root);
@@ -159,7 +156,7 @@ function setStoredOptions(options) {
     });
 }
 function getStoredOptions() {
-    const keys = ['hasAutoOverlay'];
+    const keys = ['overlaySetting', 'isActive'];
     return new Promise((resolve) => {
         chrome.storage.local.get(keys, (res) => {
             resolve(res);

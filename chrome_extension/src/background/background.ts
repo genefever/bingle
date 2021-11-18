@@ -1,8 +1,9 @@
 import { setStoredOptions } from '../utils/storage'
 
-chrome.runtime.onInstalled.addListener((details) => {
+chrome.runtime.onInstalled.addListener(() => {
   setStoredOptions({
-    hasAutoOverlay: false,
+    overlaySetting: 'toggle',
+    isActive: false,
   })
 
   chrome.contextMenus.create({
