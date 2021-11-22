@@ -1,7 +1,7 @@
 import { setStoredIsActive, setStoredOverlayOption } from '../utils/storage'
 
 chrome.runtime.onInstalled.addListener(() => {
-  setStoredIsActive(false)
+  setStoredIsActive(true)
   setStoredOverlayOption('toggle')
 
   chrome.contextMenus.create({

@@ -11,6 +11,7 @@ import { getStoredIsActive } from '../utils/storage'
 const App: React.FC<{}> = () => {
   const [isActive, setIsActive] = useState<boolean>(true)
 
+  // TODO double check storage is working.
   useEffect(() => {
     // Set options from saved options in local storage.
     getStoredIsActive().then((options) => setIsActive(options.isActive))

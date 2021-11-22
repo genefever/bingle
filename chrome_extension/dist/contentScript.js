@@ -11995,7 +11995,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".overlayCard {\n  position: fixed;\n  right: 5%;\n  top: 15%;\n  width: 300px;\n  background-color: #f5f5f5 !important;\n  z-index: 99999;\n}\n\n.overlayCardHeader {\n  padding-top: 5px !important;\n  padding-bottom: 5px !important;\n  background: -webkit-linear-gradient(\n    45deg,\n    #fe6b8b 30%,\n    #ff8e53 90%\n  ) !important;\n}\n\n.css-nrdprl-MuiTypography-root {\n  color: #f5f5f5 !important;\n}\n", "",{"version":3,"sources":["webpack://./src/contentScript/contentScript.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,SAAS;EACT,QAAQ;EACR,YAAY;EACZ,oCAAoC;EACpC,cAAc;AAChB;;AAEA;EACE,2BAA2B;EAC3B,8BAA8B;EAC9B;;;;cAIY;AACd;;AAEA;EACE,yBAAyB;AAC3B","sourcesContent":[".overlayCard {\n  position: fixed;\n  right: 5%;\n  top: 15%;\n  width: 300px;\n  background-color: #f5f5f5 !important;\n  z-index: 99999;\n}\n\n.overlayCardHeader {\n  padding-top: 5px !important;\n  padding-bottom: 5px !important;\n  background: -webkit-linear-gradient(\n    45deg,\n    #fe6b8b 30%,\n    #ff8e53 90%\n  ) !important;\n}\n\n.css-nrdprl-MuiTypography-root {\n  color: #f5f5f5 !important;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".overlayCard {\n  position: fixed;\n  right: 5%;\n  top: 10%;\n  width: 300px;\n  background-color: #f5f5f5 !important;\n  z-index: 99999;\n}\n\n.overlayCardHeader {\n  padding-top: 5px !important;\n  padding-bottom: 5px !important;\n  background: -webkit-linear-gradient(\n    45deg,\n    #fe6b8b 30%,\n    #ff8e53 90%\n  ) !important;\n}\n\n.css-nrdprl-MuiTypography-root {\n  color: #f5f5f5 !important;\n}\n", "",{"version":3,"sources":["webpack://./src/contentScript/contentScript.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,SAAS;EACT,QAAQ;EACR,YAAY;EACZ,oCAAoC;EACpC,cAAc;AAChB;;AAEA;EACE,2BAA2B;EAC3B,8BAA8B;EAC9B;;;;cAIY;AACd;;AAEA;EACE,yBAAyB;AAC3B","sourcesContent":[".overlayCard {\n  position: fixed;\n  right: 5%;\n  top: 10%;\n  width: 300px;\n  background-color: #f5f5f5 !important;\n  z-index: 99999;\n}\n\n.overlayCardHeader {\n  padding-top: 5px !important;\n  padding-bottom: 5px !important;\n  background: -webkit-linear-gradient(\n    45deg,\n    #fe6b8b 30%,\n    #ff8e53 90%\n  ) !important;\n}\n\n.css-nrdprl-MuiTypography-root {\n  color: #f5f5f5 !important;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -47874,6 +47874,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const App = () => {
     const [isActive, setIsActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+    // TODO double check storage is working.
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
         // Set options from saved options in local storage.
         (0,_utils_storage__WEBPACK_IMPORTED_MODULE_4__.getStoredIsActive)().then((options) => setIsActive(options.isActive));

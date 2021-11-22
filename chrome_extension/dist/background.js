@@ -121,7 +121,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storage */ "./src/utils/storage.ts");
 
 chrome.runtime.onInstalled.addListener(() => {
-    (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredIsActive)(false);
+    (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredIsActive)(true);
     (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredOverlayOption)('toggle');
     chrome.contextMenus.create({
         title: 'Search on Bingle',
