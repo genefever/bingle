@@ -2,6 +2,57 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/utils/api.ts":
+/*!**************************!*\
+  !*** ./src/utils/api.ts ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchApiData": () => (/* binding */ fetchApiData),
+/* harmony export */   "fetchWikiData": () => (/* binding */ fetchWikiData)
+/* harmony export */ });
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+const OPEN_WEATHER_API_KEY = 'e5920fe1a6b8c2295e118ca469f38da6';
+function fetchApiData(query) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const url = 'http://localhost:4000/api?' +
+            new URLSearchParams({
+                query: query,
+            });
+        const res = yield fetch(url);
+        if (!res.ok) {
+            throw new Error('Wiki data could not be retrieved.');
+        }
+        const data = yield res.json();
+        //   console.log(data)
+        return data;
+    });
+}
+function fetchWikiData(query) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${OPEN_WEATHER_API_KEY}`);
+        if (!res.ok) {
+            throw new Error('Wiki data could not be retrieved.');
+        }
+        const data = yield res.json();
+        //   console.log(data)
+        return data;
+    });
+}
+
+
+/***/ }),
+
 /***/ "./src/utils/storage.ts":
 /*!******************************!*\
   !*** ./src/utils/storage.ts ***!
@@ -119,6 +170,8 @@ var __webpack_exports__ = {};
   \**************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storage */ "./src/utils/storage.ts");
+/* harmony import */ var _utils_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/api */ "./src/utils/api.ts");
+
 
 chrome.runtime.onInstalled.addListener(() => {
     (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredIsActive)(true);
@@ -128,11 +181,14 @@ chrome.runtime.onInstalled.addListener(() => {
         id: 'contextMenu1',
         contexts: ['selection'],
     });
-    chrome.contextMenus.onClicked.addListener((e) => {
-        // this is the selected text to be used as a query.
-        console.log(e.selectionText);
-        // Send text to backend using fetch or axios.
-    });
+});
+// Add click event
+chrome.contextMenus.onClicked.addListener((e) => {
+    // this is the selected text to be used as a query.
+    console.log(e.selectionText);
+    // Send text to backend using fetch or axios.
+    const res = (0,_utils_api__WEBPACK_IMPORTED_MODULE_1__.fetchApiData)(e.selectionText);
+    console.log(res);
 });
 
 })();

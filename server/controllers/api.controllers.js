@@ -2,6 +2,8 @@ const { PythonShell } = require('python-shell')
 const path = require('path')
 
 const sayHello = (req, res) => {
+  console.log(req.query.query)
+
   let options = {
     mode: 'text',
     scriptPath: path.join(__dirname, '..', 'python'),
@@ -15,6 +17,8 @@ const sayHello = (req, res) => {
     console.log('results: %j', results)
     res.send(`<h2>${results[0]}</h2>`)
   })
+
+  // res.send()
 }
 
 module.exports = {

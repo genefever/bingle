@@ -22,6 +22,24 @@ export interface WikiData {
   }
 }
 
+export async function fetchApiData(query: string): Promise<string> {
+  const url =
+    'http://localhost:4000/api?' +
+    new URLSearchParams({
+      query: query,
+    })
+
+  const res = await fetch(url)
+
+  if (!res.ok) {
+    throw new Error('Wiki data could not be retrieved.')
+  }
+
+  const data: string = await res.json()
+  //   console.log(data)
+  return data
+}
+
 export async function fetchWikiData(query: string): Promise<WikiData> {
   const res = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${OPEN_WEATHER_API_KEY}`

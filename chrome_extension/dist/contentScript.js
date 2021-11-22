@@ -46443,6 +46443,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchApiData": () => (/* binding */ fetchApiData),
 /* harmony export */   "fetchWikiData": () => (/* binding */ fetchWikiData)
 /* harmony export */ });
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -46455,6 +46456,21 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
     });
 };
 const OPEN_WEATHER_API_KEY = 'e5920fe1a6b8c2295e118ca469f38da6';
+function fetchApiData(query) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const url = 'http://localhost:4000/api?' +
+            new URLSearchParams({
+                query: query,
+            });
+        const res = yield fetch(url);
+        if (!res.ok) {
+            throw new Error('Wiki data could not be retrieved.');
+        }
+        const data = yield res.json();
+        //   console.log(data)
+        return data;
+    });
+}
 function fetchWikiData(query) {
     return __awaiter(this, void 0, void 0, function* () {
         const res = yield fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${OPEN_WEATHER_API_KEY}`);
