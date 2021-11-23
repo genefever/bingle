@@ -2,6 +2,7 @@ const { PythonShell } = require('python-shell')
 const path = require('path')
 
 const sayHello = (req, res) => {
+  // The query string
   console.log(req.query.query)
 
   let options = {

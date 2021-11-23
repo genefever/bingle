@@ -62,9 +62,7 @@ function fetchWikiData(query) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "setStoredOverlayOption": () => (/* binding */ setStoredOverlayOption),
-/* harmony export */   "getStoredOverlayOption": () => (/* binding */ getStoredOverlayOption),
-/* harmony export */   "setStoredIsActive": () => (/* binding */ setStoredIsActive),
-/* harmony export */   "getStoredIsActive": () => (/* binding */ getStoredIsActive)
+/* harmony export */   "getStoredOverlayOption": () => (/* binding */ getStoredOverlayOption)
 /* harmony export */ });
 function setStoredOverlayOption(overlayOption) {
     const val = {
@@ -78,24 +76,6 @@ function setStoredOverlayOption(overlayOption) {
 }
 function getStoredOverlayOption() {
     const keys = ['overlayOption'];
-    return new Promise((resolve) => {
-        chrome.storage.local.get(keys, (res) => {
-            resolve(res);
-        });
-    });
-}
-function setStoredIsActive(isActive) {
-    const val = {
-        isActive,
-    };
-    return new Promise((resolve) => {
-        chrome.storage.local.set(val, () => {
-            resolve();
-        });
-    });
-}
-function getStoredIsActive() {
-    const keys = ['isActive'];
     return new Promise((resolve) => {
         chrome.storage.local.get(keys, (res) => {
             resolve(res);
@@ -174,7 +154,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 chrome.runtime.onInstalled.addListener(() => {
-    (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredIsActive)(true);
     (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredOverlayOption)('toggle');
     chrome.contextMenus.create({
         title: 'Search on Bingle',
@@ -184,11 +163,15 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 // Add click event
 chrome.contextMenus.onClicked.addListener((e) => {
-    // this is the selected text to be used as a query.
-    console.log(e.selectionText);
-    // Send text to backend using fetch or axios.
+    // Send highlighted query to the backend.
     const res = (0,_utils_api__WEBPACK_IMPORTED_MODULE_1__.fetchApiData)(e.selectionText);
-    console.log(res);
+    // Send message to contentScript.tsx to activate the popup.
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {
+            type: 'TOGGLE_IS_ACTIVE',
+            isActive: true,
+        });
+    });
 });
 
 })();

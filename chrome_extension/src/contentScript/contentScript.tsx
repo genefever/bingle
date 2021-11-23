@@ -6,16 +6,29 @@ import './contentScript.css'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
-import { getStoredIsActive } from '../utils/storage'
+import { MessageType } from '../utils/types'
 
 const App: React.FC<{}> = () => {
-  const [isActive, setIsActive] = useState<boolean>(true)
+  const [isActive, setIsActive] = useState<boolean>(false)
 
   // TODO double check storage is working.
   useEffect(() => {
-    // Set options from saved options in local storage.
-    getStoredIsActive().then((options) => setIsActive(options.isActive))
+    // Get message from background.ts to update isActive
+    chrome.runtime.onMessage.addListener((message: MessageType) =>
+      handleMessage(message)
+    )
+
+    // Remove listener when this component unmounts
+    return () => {
+      chrome.runtime.onMessage.removeListener(handleMessage)
+    }
   }, [])
+
+  const handleMessage = (message: MessageType) => {
+    if (message.type === 'TOGGLE_IS_ACTIVE') {
+      setIsActive(message.isActive)
+    }
+  }
 
   const handleClose = () => {
     setIsActive(false)

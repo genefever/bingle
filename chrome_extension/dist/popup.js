@@ -145,9 +145,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_1__.render(react__WEBPACK_IMPORTED_MODULE_0__
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "setStoredOverlayOption": () => (/* binding */ setStoredOverlayOption),
-/* harmony export */   "getStoredOverlayOption": () => (/* binding */ getStoredOverlayOption),
-/* harmony export */   "setStoredIsActive": () => (/* binding */ setStoredIsActive),
-/* harmony export */   "getStoredIsActive": () => (/* binding */ getStoredIsActive)
+/* harmony export */   "getStoredOverlayOption": () => (/* binding */ getStoredOverlayOption)
 /* harmony export */ });
 function setStoredOverlayOption(overlayOption) {
     const val = {
@@ -161,24 +159,6 @@ function setStoredOverlayOption(overlayOption) {
 }
 function getStoredOverlayOption() {
     const keys = ['overlayOption'];
-    return new Promise((resolve) => {
-        chrome.storage.local.get(keys, (res) => {
-            resolve(res);
-        });
-    });
-}
-function setStoredIsActive(isActive) {
-    const val = {
-        isActive,
-    };
-    return new Promise((resolve) => {
-        chrome.storage.local.set(val, () => {
-            resolve();
-        });
-    });
-}
-function getStoredIsActive() {
-    const keys = ['isActive'];
     return new Promise((resolve) => {
         chrome.storage.local.get(keys, (res) => {
             resolve(res);
