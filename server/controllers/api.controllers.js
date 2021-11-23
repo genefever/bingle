@@ -6,9 +6,9 @@ const sayHello = (req, res) => {
   console.log(req.query.query)
 
   let options = {
-    mode: 'text',
+    mode: 'json',
     scriptPath: path.join(__dirname, '..', 'python'),
-    args: ['Server', ' is', ' running.'],
+    args: ['Server is running'],
   }
 
   PythonShell.run('script.py', options, function (err, results) {
@@ -16,10 +16,9 @@ const sayHello = (req, res) => {
 
     // results is an array consisting of messages collected during execution
     console.log('results: %j', results)
-    res.send(`<h2>${results[0]}</h2>`)
+    // res.send(`<h2>${results[0]}</h2>`)
+    res.send(results[0])
   })
-
-  // res.send()
 }
 
 module.exports = {
