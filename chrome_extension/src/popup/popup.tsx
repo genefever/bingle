@@ -41,6 +41,16 @@ const App: React.FC<{}> = () => {
       type: 'SET_ENABLE',
       enable: selectedValue === 'enable',
     })
+
+    // Close contentScript.tsx if display is set to 'disable'.
+    if (selectedValue === 'disable') {
+      chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {
+          type: 'SET_IS_ACTIVE',
+          isActive: false,
+        })
+      })
+    }
   }
 
   // Don't display the popup if 'options' has not been set yet from local storage.

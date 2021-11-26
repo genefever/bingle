@@ -1,13 +1,18 @@
 // Message types for chrome.runtime
-interface SetQuery {
-  type: 'SET_QUERY'
-  query: string
-}
 interface SetEnable {
   type: 'SET_ENABLE'
   enable: boolean
 }
-export type MessageType = SetQuery | SetEnable
+interface SetIsActive {
+  type: 'SET_IS_ACTIVE'
+  isActive: boolean
+}
+interface SetQuery {
+  type: 'SET_QUERY'
+  query: string
+}
+
+export type MessageType = SetEnable | SetIsActive | SetQuery
 
 // Event types
 export type SelectChangeEventHandler = React.ChangeEvent<HTMLInputElement>

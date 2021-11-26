@@ -19,7 +19,7 @@ const App: React.FC<{}> = () => {
   const [isActive, setIsActive] = useState<boolean>(false)
 
   useEffect(() => {
-    // Receive message from background.ts to fetch the ranked wiki data.
+    // Receive message from background.ts to fetch the ranked wiki data
     chrome.runtime.onMessage.addListener((message: MessageType) =>
       handleMessage(message)
     )
@@ -30,13 +30,15 @@ const App: React.FC<{}> = () => {
     }
   }, [])
 
-  // Called when background.ts sends message to set isActive
+  // Handle incoming chrome.runtime messages
   const handleMessage = (message: MessageType) => {
     if (message.type === 'SET_QUERY') {
       fetchWikiData(message.query).then((res) => {
         setCandidates(res)
         setIsActive(true)
       })
+    } else if (message.type === 'SET_IS_ACTIVE') {
+      setIsActive(message.isActive)
     }
   }
 

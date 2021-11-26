@@ -47702,20 +47702,23 @@ const App = () => {
     const [candidates, setCandidates] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Array(3).fill(null));
     const [isActive, setIsActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-        // Receive message from background.ts to fetch the ranked wiki data.
+        // Receive message from background.ts to fetch the ranked wiki data
         chrome.runtime.onMessage.addListener((message) => handleMessage(message));
         // Remove listener when this component unmounts
         return () => {
             chrome.runtime.onMessage.removeListener(handleMessage);
         };
     }, []);
-    // Called when background.ts sends message to set isActive
+    // Handle incoming chrome.runtime messages
     const handleMessage = (message) => {
         if (message.type === 'SET_QUERY') {
             (0,_utils_api__WEBPACK_IMPORTED_MODULE_5__.fetchWikiData)(message.query).then((res) => {
                 setCandidates(res);
                 setIsActive(true);
             });
+        }
+        else if (message.type === 'SET_IS_ACTIVE') {
+            setIsActive(message.isActive);
         }
     };
     // Close the popup
