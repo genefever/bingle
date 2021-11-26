@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import 'fontsource-roboto'
-import InfoCard from '../components/InfoCard'
 import Popup from '../components/Popup'
 import { Card, CardHeader } from '@mui/material'
 import './contentScript.css'
@@ -14,7 +13,9 @@ import { WikiData } from '../utils/api'
 
 // Main component that shows the "Bingle search results" popup on the webpage when activated.
 const App: React.FC<{}> = () => {
-  const [candidates, setCandidates] = useState<any>(new Array(3).fill(null))
+  const [candidates, setCandidates] = useState<Array<WikiData>>(
+    new Array(3).fill(null)
+  )
   const [isActive, setIsActive] = useState<boolean>(false)
 
   useEffect(() => {

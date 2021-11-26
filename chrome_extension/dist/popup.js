@@ -117,8 +117,14 @@ const App = () => {
     // Save the selected display options setting.
     const handleOptionsChange = (e) => {
         const selectedValue = e.target.value;
+        // Store options change to local storage.
         (0,_utils_storage__WEBPACK_IMPORTED_MODULE_4__.setStoredOverlayOption)(selectedValue).then(() => {
             setOptions(Object.assign(Object.assign({}, options), { overlayOption: selectedValue }));
+        });
+        // Send message to background.ts to enable/disable contextMenu.
+        chrome.runtime.sendMessage({
+            type: 'SET_ENABLE',
+            enable: selectedValue === 'enable',
         });
     };
     // Don't display the popup if 'options' has not been set yet from local storage.
@@ -129,8 +135,7 @@ const App = () => {
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], { component: "fieldset" },
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], { component: "legend" }, "Bingle Display Settings"),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], { value: options.overlayOption, onChange: (e) => handleOptionsChange(e) },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "auto", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Auto" }),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "toggle", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Toggle" }),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "enable", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Enable" }),
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { value: "disable", control: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], null), label: "Disable" })))));
 };
 const root = document.createElement('div');
@@ -151,6 +156,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setStoredOverlayOption": () => (/* binding */ setStoredOverlayOption),
 /* harmony export */   "getStoredOverlayOption": () => (/* binding */ getStoredOverlayOption)
 /* harmony export */ });
+// Setter function to set LocalStorageOptions.
 function setStoredOverlayOption(overlayOption) {
     const val = {
         overlayOption,
@@ -161,6 +167,7 @@ function setStoredOverlayOption(overlayOption) {
         });
     });
 }
+// Getter function to retrieve LocalStorageOptions.
 function getStoredOverlayOption() {
     const keys = ['overlayOption'];
     return new Promise((resolve) => {

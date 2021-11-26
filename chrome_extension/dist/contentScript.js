@@ -46328,7 +46328,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-// Make a call to api server to fetch the 3 most relevant Wiki data.
+// Make a call to the api server to fetch the 3 most relevant Wiki data.
 function fetchWikiData(query) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = 'http://localhost:4000/api?' +

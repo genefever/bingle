@@ -13,6 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setStoredOverlayOption": () => (/* binding */ setStoredOverlayOption),
 /* harmony export */   "getStoredOverlayOption": () => (/* binding */ getStoredOverlayOption)
 /* harmony export */ });
+// Setter function to set LocalStorageOptions.
 function setStoredOverlayOption(overlayOption) {
     const val = {
         overlayOption,
@@ -23,6 +24,7 @@ function setStoredOverlayOption(overlayOption) {
         });
     });
 }
+// Getter function to retrieve LocalStorageOptions.
 function getStoredOverlayOption() {
     const keys = ['overlayOption'];
     return new Promise((resolve) => {
@@ -102,17 +104,33 @@ __webpack_require__.r(__webpack_exports__);
 
 // Called when extension is first installed.
 chrome.runtime.onInstalled.addListener(() => {
-    (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredOverlayOption)('toggle');
-    // Show Bingle chrome extension in the right-click dropdown.
+    (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredOverlayOption)('enable');
+    // Show Bingle chrome extension by default in the right-click dropdown.
     chrome.contextMenus.create({
         title: 'Search on Bingle',
         id: 'contextMenu1',
         contexts: ['selection'],
     });
 });
-// Add click event
+// Listens to "Enable/Disable" settings changes from popup.tsx.
+chrome.runtime.onMessage.addListener((message) => {
+    if (message.type === 'SET_ENABLE') {
+        if (message.enable === true) {
+            // Show Bingle chrome extension in the right-click dropdown.
+            chrome.contextMenus.create({
+                title: 'Search on Bingle',
+                id: 'contextMenu1',
+                contexts: ['selection'],
+            });
+        }
+        else {
+            // Remove Bingle chrome extension in the right-click dropdown.
+            chrome.contextMenus.remove('contextMenu1');
+        }
+    }
+});
+// Send the highlighted query text to contentScript.tsx.
 chrome.contextMenus.onClicked.addListener((e) => {
-    // Send the highlighted query text to contentScript.tsx.
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {
             type: 'SET_QUERY',

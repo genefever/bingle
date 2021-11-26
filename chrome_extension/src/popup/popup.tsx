@@ -31,8 +31,15 @@ const App: React.FC<{}> = () => {
   const handleOptionsChange = (e: SelectChangeEventHandler) => {
     const selectedValue = e.target.value
 
+    // Store options change to local storage.
     setStoredOverlayOption(selectedValue).then(() => {
       setOptions({ ...options, overlayOption: selectedValue })
+    })
+
+    // Send message to background.ts to enable/disable contextMenu.
+    chrome.runtime.sendMessage({
+      type: 'SET_ENABLE',
+      enable: selectedValue === 'enable',
     })
   }
 
@@ -49,8 +56,7 @@ const App: React.FC<{}> = () => {
           value={options.overlayOption}
           onChange={(e) => handleOptionsChange(e)}
         >
-          <FormControlLabel value="auto" control={<Radio />} label="Auto" />
-          <FormControlLabel value="toggle" control={<Radio />} label="Toggle" />
+          <FormControlLabel value="enable" control={<Radio />} label="Enable" />
           <FormControlLabel
             value="disable"
             control={<Radio />}
