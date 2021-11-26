@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
+import 'fontsource-roboto'
+import InfoCard from '../components/InfoCard'
 import Popup from '../components/Popup'
-import { Card, CardActions, CardHeader, CardContent } from '@mui/material'
+import { Card, CardHeader } from '@mui/material'
 import './contentScript.css'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import { MessageType } from '../utils/types'
+import { fetchWikiData } from '../utils/api'
+import { WikiData } from '../utils/api'
 
 const App: React.FC<{}> = () => {
+  const [candidates, setCandidates] = useState<any>(new Array(3).fill(null))
   const [isActive, setIsActive] = useState<boolean>(false)
 
-  // TODO double check storage is working.
   useEffect(() => {
-    // Get message from background.ts to update isActive
+    // Get message from background.ts to set fetch wiki data.
     chrome.runtime.onMessage.addListener((message: MessageType) =>
       handleMessage(message)
     )
@@ -24,12 +28,17 @@ const App: React.FC<{}> = () => {
     }
   }, [])
 
+  // Called when background.ts sends message to set isActive
   const handleMessage = (message: MessageType) => {
-    if (message.type === 'TOGGLE_IS_ACTIVE') {
-      setIsActive(message.isActive)
+    if (message.type === 'SET_POPUP') {
+      fetchWikiData(message.query).then((res) => {
+        setIsActive(true)
+        setCandidates(res)
+      })
     }
   }
 
+  // Close the popup
   const handleClose = () => {
     setIsActive(false)
   }
@@ -52,7 +61,7 @@ const App: React.FC<{}> = () => {
               subheader="Bingle search results"
             />
 
-            <Popup />
+            <Popup candidates={candidates} />
           </Card>
         </ClickAwayListener>
       )}

@@ -1,7 +1,7 @@
 const { PythonShell } = require('python-shell')
 const path = require('path')
 
-const sayHello = (req, res) => {
+const getRankedWikiData = (req, res) => {
   // The query string
   console.log(req.query.query)
 
@@ -22,5 +22,5 @@ const sayHello = (req, res) => {
 }
 
 module.exports = {
-  sayHello,
+  getRankedWikiData,
 }

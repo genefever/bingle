@@ -3189,37 +3189,6 @@ const accordionSummaryClasses = (0,_mui_core__WEBPACK_IMPORTED_MODULE_1__["defau
 
 /***/ }),
 
-/***/ "./node_modules/@mui/material/Box/Box.js":
-/*!***********************************************!*\
-  !*** ./node_modules/@mui/material/Box/Box.js ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/createBox.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils */ "./node_modules/@mui/core/generateUtilityClass/ClassNameGenerator.js");
-/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles */ "./node_modules/@mui/material/styles/createTheme.js");
-
-
-
-const defaultTheme = (0,_styles__WEBPACK_IMPORTED_MODULE_0__["default"])();
-/**
- * @ignore - do not document.
- */
-
-const Box = (0,_mui_system__WEBPACK_IMPORTED_MODULE_1__["default"])({
-  defaultTheme,
-  defaultClassName: 'MuiBox-root',
-  generateClassName: _utils__WEBPACK_IMPORTED_MODULE_2__["default"].generate
-});
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Box);
-
-/***/ }),
-
 /***/ "./node_modules/@mui/material/Button/Button.js":
 /*!*****************************************************!*\
   !*** ./node_modules/@mui/material/Button/Button.js ***!
@@ -9067,91 +9036,6 @@ function compose(...styles) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (compose);
-
-/***/ }),
-
-/***/ "./node_modules/@mui/system/esm/createBox.js":
-/*!***************************************************!*\
-  !*** ./node_modules/@mui/system/esm/createBox.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ createBox)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
-/* harmony import */ var _mui_styled_engine__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/styled-engine */ "./node_modules/@mui/styled-engine/index.js");
-/* harmony import */ var _styleFunctionSx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./styleFunctionSx */ "./node_modules/@mui/system/esm/styleFunctionSx/styleFunctionSx.js");
-/* harmony import */ var _styleFunctionSx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./styleFunctionSx */ "./node_modules/@mui/system/esm/styleFunctionSx/extendSxProp.js");
-/* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./useTheme */ "./node_modules/@mui/system/esm/useTheme.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-const _excluded = ["className", "component"];
-
-
-
-
-
-
-
-function createBox(options = {}) {
-  const {
-    defaultTheme,
-    defaultClassName = 'MuiBox-root',
-    generateClassName
-  } = options;
-  const BoxRoot = (0,_mui_styled_engine__WEBPACK_IMPORTED_MODULE_6__["default"])('div')(_styleFunctionSx__WEBPACK_IMPORTED_MODULE_7__["default"]);
-  const Box = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function Box(inProps, ref) {
-    const theme = (0,_useTheme__WEBPACK_IMPORTED_MODULE_8__["default"])(defaultTheme);
-
-    const _extendSxProp = (0,_styleFunctionSx__WEBPACK_IMPORTED_MODULE_9__["default"])(inProps),
-          {
-      className,
-      component = 'div'
-    } = _extendSxProp,
-          other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(_extendSxProp, _excluded);
-
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(BoxRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-      as: component,
-      ref: ref,
-      className: (0,clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(className, generateClassName ? generateClassName(defaultClassName) : defaultClassName),
-      theme: theme
-    }, other));
-  });
-   true ? Box.propTypes
-  /* remove-proptypes */
-  = {
-    // ----------------------------- Warning --------------------------------
-    // | These PropTypes are generated from the TypeScript type definitions |
-    // |     To update them edit the d.ts file and run "yarn proptypes"     |
-    // ----------------------------------------------------------------------
-
-    /**
-     * @ignore
-     */
-    children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
-
-    /**
-     * The component used for the root node.
-     * Either a string to use a HTML element or a component.
-     */
-    component: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().elementType),
-
-    /**
-     * @ignore
-     */
-    sx: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().array)])
-  } : 0;
-  return Box;
-}
 
 /***/ }),
 
@@ -46316,47 +46200,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Accordion/Accordion.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionSummary/AccordionSummary.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionDetails/AccordionDetails.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
-/* harmony import */ var _mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/icons-material/ExpandMore */ "./node_modules/@mui/icons-material/ExpandMore.js");
-/* harmony import */ var _utils_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/api */ "./src/utils/api.ts");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Accordion/Accordion.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionSummary/AccordionSummary.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionDetails/AccordionDetails.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var _mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/icons-material/ExpandMore */ "./node_modules/@mui/icons-material/ExpandMore.js");
 
 
 
-
-const InfoCard = ({ expanded, query, onLearnMore, index, setExpanded }) => {
-    const [infoData, setInfoData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-    const [cardState, setCardState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('loading');
+const InfoCard = ({ expanded, candidate, onLearnMore, index, setExpanded }) => {
+    // const [cardState, setCardState] = useState<InfoCardState>('loading')
     const handleExpandButtonClick = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
-    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-        (0,_utils_api__WEBPACK_IMPORTED_MODULE_1__.fetchWikiData)(query)
-            .then((data) => {
-            setInfoData(data);
-            setCardState('ready');
-        })
-            .catch((err) => setCardState('error'));
-    }, [query]);
-    if (cardState == 'loading' || cardState == 'error') {
-        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], { mx: '4px', my: '16px' },
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], { variant: "body1" }, cardState == 'loading'
-                ? 'Loading...'
-                : 'Could not retrieve information for this query.')));
-    }
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], { disableGutters: true, expanded: expanded === `panel${index}`, onChange: handleExpandButtonClick(`panel${index}`) },
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { expandIcon: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_6__["default"], null) },
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], { sx: { width: '50%', flexShrink: 0 } }, infoData.name)),
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], null, "Hi"),
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], null, onLearnMore && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], { style: {
-                color: '#2196f3',
-                backgroundColor: 'transparent',
-                padding: 0,
-            }, onClick: onLearnMore, size: "small" }, "Learn More")))));
+    // Open Wikipedia page based on link at index
+    const handleLearnMoreButtonClick = () => {
+        // TODO
+        console.log(candidate.url);
+    };
+    // if (cardState == 'loading' || cardState == 'error') {
+    //   return (
+    //     <Box mx={'4px'} my={'16px'}>
+    //       <Typography variant="body1">
+    //         {cardState == 'loading' || candidate == null
+    //           ? 'Loading...'
+    //           : 'Could not retrieve information for this query.'}
+    //       </Typography>
+    //     </Box>
+    //   )
+    // }
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_1__["default"], { disableGutters: true, expanded: expanded === `panel${index}`, onChange: handleExpandButtonClick(`panel${index}`) },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], { expandIcon: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_3__["default"], null) },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], { sx: { width: '50%', flexShrink: 0 } }, candidate ? candidate.title : 'Loading...')),
+        candidate && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], null, candidate.description),
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], null,
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], { style: {
+                        color: '#2196f3',
+                        backgroundColor: 'transparent',
+                        padding: 0,
+                    }, onClick: handleLearnMoreButtonClick, size: "small" }, "Learn More"))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InfoCard);
 
@@ -46398,18 +46282,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const Popup = () => {
+const Popup = ({ candidates }) => {
+    // Expand the first panel by default.
     const [expanded, setExpanded] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('panel0');
-    const [candidates, setCandidates] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([
-        'Toronto',
-        'New York',
-        'Sunnyvale',
-    ]);
-    const handleLearnMoreButtonClick = (index) => {
-        // TODO open Wikipedia page based on link at index
-        console.log(index);
-    };
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, candidates.map((candidate, index) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_InfoCard__WEBPACK_IMPORTED_MODULE_2__["default"], { expanded: expanded, setExpanded: setExpanded, index: index, key: index, onLearnMore: () => handleLearnMoreButtonClick(index), query: candidate })))));
+    // const handleLearnMoreButtonClick = (index: number) => {
+    //   // TODO open Wikipedia page based on link at index
+    //   console.log(index)
+    // }
+    // useEffect(() => {
+    //   // Get message from background.ts to update isActive
+    //   chrome.runtime.onMessage.addListener((message: MessageType) =>
+    //     handleMessage(message)
+    //   )
+    //   // Remove listener when this component unmounts
+    //   return () => {
+    //     chrome.runtime.onMessage.removeListener(handleMessage)
+    //   }
+    // }, [])
+    // const handleMessage = (message: MessageType) => {
+    //   window.alert('yea')
+    //   if (message.type === 'SET_QUERY') {
+    //     fetchWikiData(message.query).then((data) => {
+    //       setCandidates(data)
+    //     })
+    //     // setCandidates(fetchWikiData(message.query))
+    //     // setCandidates(message.candidates)
+    //   }
+    // }
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, candidates.map((candidate, index) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_InfoCard__WEBPACK_IMPORTED_MODULE_2__["default"], { expanded: expanded, setExpanded: setExpanded, index: index, key: index, candidate: candidate })))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Popup);
 
@@ -46443,7 +46343,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fetchApiData": () => (/* binding */ fetchApiData),
 /* harmony export */   "fetchWikiData": () => (/* binding */ fetchWikiData)
 /* harmony export */ });
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -46455,33 +46354,53 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const OPEN_WEATHER_API_KEY = 'e5920fe1a6b8c2295e118ca469f38da6';
-function fetchApiData(query) {
+function fetchWikiData(query) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = 'http://localhost:4000/api?' +
             new URLSearchParams({
-                query: query,
+                q: query,
             });
         const res = yield fetch(url);
         if (!res.ok) {
             throw new Error('Wiki data could not be retrieved.');
         }
         const data = yield res.json();
-        //   console.log(data)
         return data;
     });
 }
-function fetchWikiData(query) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const res = yield fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${OPEN_WEATHER_API_KEY}`);
-        if (!res.ok) {
-            throw new Error('Wiki data could not be retrieved.');
-        }
-        const data = yield res.json();
-        //   console.log(data)
-        return data;
-    });
-}
+// const OPEN_WEATHER_API_KEY = 'e5920fe1a6b8c2295e118ca469f38da6'
+// export interface WikiData {
+//   name: string
+//   main: {
+//     feels_like: number
+//     humidity: number
+//     pressure: number
+//     temp: number
+//     temp_max: number
+//     temp_min: number
+//   }
+//   weather: {
+//     description: string
+//     icon: string
+//     id: number
+//     main: string
+//   }[]
+//   wind: {
+//     deg: number
+//     speed: number
+//   }
+// }
+// export async function fetchWikiData(query: string): Promise<WikiData> {
+//   const res = await fetch(
+//     `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${OPEN_WEATHER_API_KEY}`
+//   )
+//   if (!res.ok) {
+//     throw new Error('Wiki data could not be retrieved.')
+//   }
+//   const data: WikiData = await res.json()
+//   //   console.log(data)
+//   return data
+// }
 
 
 /***/ }),
@@ -47817,13 +47736,17 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _components_Popup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Popup */ "./src/components/Popup/index.tsx");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Card/Card.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardHeader/CardHeader.js");
-/* harmony import */ var _contentScript_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contentScript.css */ "./src/contentScript/contentScript.css");
-/* harmony import */ var _mui_icons_material_Close__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/icons-material/Close */ "./node_modules/@mui/icons-material/Close.js");
-/* harmony import */ var _mui_material_IconButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material/IconButton */ "./node_modules/@mui/material/IconButton/IconButton.js");
-/* harmony import */ var _mui_material_ClickAwayListener__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/ClickAwayListener */ "./node_modules/@mui/core/ClickAwayListener/ClickAwayListener.js");
+/* harmony import */ var fontsource_roboto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! fontsource-roboto */ "./node_modules/fontsource-roboto/index.css");
+/* harmony import */ var _components_Popup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Popup */ "./src/components/Popup/index.tsx");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Card/Card.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardHeader/CardHeader.js");
+/* harmony import */ var _contentScript_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./contentScript.css */ "./src/contentScript/contentScript.css");
+/* harmony import */ var _mui_icons_material_Close__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/icons-material/Close */ "./node_modules/@mui/icons-material/Close.js");
+/* harmony import */ var _mui_material_IconButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material/IconButton */ "./node_modules/@mui/material/IconButton/IconButton.js");
+/* harmony import */ var _mui_material_ClickAwayListener__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material/ClickAwayListener */ "./node_modules/@mui/core/ClickAwayListener/ClickAwayListener.js");
+/* harmony import */ var _utils_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/api */ "./src/utils/api.ts");
+
+
 
 
 
@@ -47833,29 +47756,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const App = () => {
+    const [candidates, setCandidates] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Array(3).fill(null));
     const [isActive, setIsActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-    // TODO double check storage is working.
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-        // Get message from background.ts to update isActive
+        // Get message from background.ts to set fetch wiki data.
         chrome.runtime.onMessage.addListener((message) => handleMessage(message));
         // Remove listener when this component unmounts
         return () => {
             chrome.runtime.onMessage.removeListener(handleMessage);
         };
     }, []);
+    // Called when background.ts sends message to set isActive
     const handleMessage = (message) => {
-        if (message.type === 'TOGGLE_IS_ACTIVE') {
-            setIsActive(message.isActive);
+        if (message.type === 'SET_POPUP') {
+            (0,_utils_api__WEBPACK_IMPORTED_MODULE_5__.fetchWikiData)(message.query).then((res) => {
+                setIsActive(true);
+                setCandidates(res);
+            });
         }
     };
+    // Close the popup
     const handleClose = () => {
         setIsActive(false);
     };
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, isActive && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_ClickAwayListener__WEBPACK_IMPORTED_MODULE_4__["default"], { onClickAway: handleClose },
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], { className: "overlayCard" },
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], { action: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_IconButton__WEBPACK_IMPORTED_MODULE_7__["default"], { className: "css-nrdprl-MuiTypography-root", onClick: handleClose },
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_Close__WEBPACK_IMPORTED_MODULE_8__["default"], null)), className: "overlayCardHeader", subheader: "Bingle search results" }),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Popup__WEBPACK_IMPORTED_MODULE_2__["default"], null))))));
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, isActive && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_ClickAwayListener__WEBPACK_IMPORTED_MODULE_6__["default"], { onClickAway: handleClose },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], { className: "overlayCard" },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], { action: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_IconButton__WEBPACK_IMPORTED_MODULE_9__["default"], { className: "css-nrdprl-MuiTypography-root", onClick: handleClose },
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_Close__WEBPACK_IMPORTED_MODULE_10__["default"], null)), className: "overlayCardHeader", subheader: "Bingle search results" }),
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Popup__WEBPACK_IMPORTED_MODULE_3__["default"], { candidates: candidates }))))));
 };
 const root = document.createElement('div');
 document.body.appendChild(root);

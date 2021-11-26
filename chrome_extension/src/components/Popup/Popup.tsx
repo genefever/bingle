@@ -1,21 +1,41 @@
-import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
+import React, { useEffect, useState } from 'react'
 import 'fontsource-roboto'
 import InfoCard from '../InfoCard'
+import { WikiData } from '../../utils/api'
+import { MessageType } from '../../utils/types'
+import { fetchWikiData } from '../../utils/api'
 
-const Popup: React.FC<{}> = () => {
+const Popup: React.FC<{ candidates: any }> = ({ candidates }) => {
+  // Expand the first panel by default.
   const [expanded, setExpanded] = useState<string | false>('panel0')
 
-  const [candidates, setCandidates] = useState<string[]>([
-    'Toronto',
-    'New York',
-    'Sunnyvale',
-  ])
+  // const handleLearnMoreButtonClick = (index: number) => {
+  //   // TODO open Wikipedia page based on link at index
+  //   console.log(index)
+  // }
 
-  const handleLearnMoreButtonClick = (index: number) => {
-    // TODO open Wikipedia page based on link at index
-    console.log(index)
-  }
+  // useEffect(() => {
+  //   // Get message from background.ts to update isActive
+  //   chrome.runtime.onMessage.addListener((message: MessageType) =>
+  //     handleMessage(message)
+  //   )
+
+  //   // Remove listener when this component unmounts
+  //   return () => {
+  //     chrome.runtime.onMessage.removeListener(handleMessage)
+  //   }
+  // }, [])
+
+  // const handleMessage = (message: MessageType) => {
+  //   window.alert('yea')
+  //   if (message.type === 'SET_QUERY') {
+  //     fetchWikiData(message.query).then((data) => {
+  //       setCandidates(data)
+  //     })
+  //     // setCandidates(fetchWikiData(message.query))
+  //     // setCandidates(message.candidates)
+  //   }
+  // }
 
   return (
     <>
@@ -25,8 +45,7 @@ const Popup: React.FC<{}> = () => {
           setExpanded={setExpanded}
           index={index}
           key={index}
-          onLearnMore={() => handleLearnMoreButtonClick(index)}
-          query={candidate}
+          candidate={candidate}
         />
       ))}
     </>

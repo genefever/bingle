@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 4000
 // Middleware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-// app.use(cors)
+app.use(cors({ origin: '*' }))
 
 // Routes
 app.use('/api', apiRouter)

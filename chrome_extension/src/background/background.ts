@@ -1,6 +1,4 @@
 import { setStoredOverlayOption } from '../utils/storage'
-import { fetchApiData } from '../utils/api'
-import { MessageType } from '../utils/types'
 
 chrome.runtime.onInstalled.addListener(() => {
   setStoredOverlayOption('toggle')
@@ -14,13 +12,12 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // Add click event
 chrome.contextMenus.onClicked.addListener((e) => {
-  // Send highlighted query to the backend.
-  const res = fetchApiData(e.selectionText)
-
-  // Send message to contentScript.tsx to activate the popup.
+  // Send message to Popup.tsx to set the candidates.
+  // Send highlighted query to contentScript.tsx.
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {
-      type: 'TOGGLE_IS_ACTIVE',
+      type: 'SET_POPUP',
+      query: e.selectionText,
       isActive: true,
     })
   })

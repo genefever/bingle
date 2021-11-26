@@ -1,4 +1,4 @@
-import React, { useEffect, useState, SetStateAction } from 'react'
+import React, { useState, SetStateAction } from 'react'
 import {
   Accordion,
   AccordionDetails,
@@ -8,45 +8,41 @@ import {
   Typography,
 } from '@mui/material'
 import ExpandMore from '@mui/icons-material/ExpandMore'
-import { fetchWikiData, WikiData } from '../../utils/api'
+import { WikiData } from '../../utils/api'
 
 type InfoCardState = 'loading' | 'error' | 'ready'
 
 const InfoCard: React.FC<{
   expanded: string | boolean
   setExpanded: React.Dispatch<SetStateAction<string | boolean>>
-  query: string
+  candidate: WikiData | null
   onLearnMore?: () => void
   index: number
-}> = ({ expanded, query, onLearnMore, index, setExpanded }) => {
-  const [infoData, setInfoData] = useState<WikiData | null>(null)
-  const [cardState, setCardState] = useState<InfoCardState>('loading')
+}> = ({ expanded, candidate, onLearnMore, index, setExpanded }) => {
+  // const [cardState, setCardState] = useState<InfoCardState>('loading')
 
   const handleExpandButtonClick =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false)
     }
 
-  useEffect(() => {
-    fetchWikiData(query)
-      .then((data) => {
-        setInfoData(data)
-        setCardState('ready')
-      })
-      .catch((err) => setCardState('error'))
-  }, [query])
-
-  if (cardState == 'loading' || cardState == 'error') {
-    return (
-      <Box mx={'4px'} my={'16px'}>
-        <Typography variant="body1">
-          {cardState == 'loading'
-            ? 'Loading...'
-            : 'Could not retrieve information for this query.'}
-        </Typography>
-      </Box>
-    )
+  // Open Wikipedia page based on link at index
+  const handleLearnMoreButtonClick = () => {
+    // TODO
+    console.log(candidate.url)
   }
+
+  // if (cardState == 'loading' || cardState == 'error') {
+  //   return (
+  //     <Box mx={'4px'} my={'16px'}>
+  //       <Typography variant="body1">
+  //         {cardState == 'loading' || candidate == null
+  //           ? 'Loading...'
+  //           : 'Could not retrieve information for this query.'}
+  //       </Typography>
+  //     </Box>
+  //   )
+  // }
 
   return (
     <Accordion
@@ -56,28 +52,27 @@ const InfoCard: React.FC<{
     >
       <AccordionSummary expandIcon={<ExpandMore />}>
         <Typography sx={{ width: '50%', flexShrink: 0 }}>
-          {infoData.name}
+          {candidate ? candidate.title : 'Loading...'}
         </Typography>
-        {/* <Typography sx={{ color: 'text.secondary' }}>
-          
-        </Typography> */}
       </AccordionSummary>
-      <AccordionDetails>Hi</AccordionDetails>
-      <AccordionDetails>
-        {onLearnMore && (
-          <Button
-            style={{
-              color: '#2196f3',
-              backgroundColor: 'transparent',
-              padding: 0,
-            }}
-            onClick={onLearnMore}
-            size="small"
-          >
-            Learn More
-          </Button>
-        )}
-      </AccordionDetails>
+      {candidate && (
+        <>
+          <AccordionDetails>{candidate.description}</AccordionDetails>
+          <AccordionDetails>
+            <Button
+              style={{
+                color: '#2196f3',
+                backgroundColor: 'transparent',
+                padding: 0,
+              }}
+              onClick={handleLearnMoreButtonClick}
+              size="small"
+            >
+              Learn More
+            </Button>
+          </AccordionDetails>
+        </>
+      )}
     </Accordion>
   )
 }
