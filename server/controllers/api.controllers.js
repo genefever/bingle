@@ -3,20 +3,17 @@ const path = require('path')
 
 const getRankedWikiData = (req, res) => {
   // The query string
-  console.log(req.query.query)
+  console.log(req.query.q)
 
   let options = {
     mode: 'json',
     scriptPath: path.join(__dirname, '..', 'python'),
-    args: [req.query.query],
+    args: [req.query.q],
   }
 
   PythonShell.run('script.py', options, function (err, results) {
     if (err) throw err
 
-    // 'results' is an array consisting of messages collected during execution.
-    // console.log('results: %j', results)
-    // res.send(`<h2>${results[0]}</h2>`)
     res.send(results[0])
   })
 }

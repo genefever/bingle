@@ -100,8 +100,10 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storage */ "./src/utils/storage.ts");
 
+// Called when extension is first installed.
 chrome.runtime.onInstalled.addListener(() => {
     (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredOverlayOption)('toggle');
+    // Show Bingle chrome extension in the right-click dropdown.
     chrome.contextMenus.create({
         title: 'Search on Bingle',
         id: 'contextMenu1',
@@ -110,13 +112,11 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 // Add click event
 chrome.contextMenus.onClicked.addListener((e) => {
-    // Send message to Popup.tsx to set the candidates.
-    // Send highlighted query to contentScript.tsx.
+    // Send the highlighted query text to contentScript.tsx.
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {
-            type: 'SET_POPUP',
+            type: 'SET_QUERY',
             query: e.selectionText,
-            isActive: true,
         });
     });
 });

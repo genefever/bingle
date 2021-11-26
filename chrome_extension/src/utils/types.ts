@@ -1,7 +1,6 @@
-// Background script broadcasting update `isActive` in Popup.tsx
-interface SetPopup {
-  type: 'SET_POPUP'
-  isActive: boolean
+// Background script broadcasting update `query` in Popup.tsx
+interface SetQuery {
+  type: 'SET_QUERY'
   query: string
 }
-export type MessageType = SetPopup
+export type MessageType = SetQuery

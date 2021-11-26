@@ -1,48 +1,39 @@
-import React, { useState, SetStateAction } from 'react'
+import React, { SetStateAction } from 'react'
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Box,
   Button,
   Typography,
 } from '@mui/material'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import { WikiData } from '../../utils/api'
 
-type InfoCardState = 'loading' | 'error' | 'ready'
-
+// Compenent that displays the WikiData.
 const InfoCard: React.FC<{
   expanded: string | boolean
   setExpanded: React.Dispatch<SetStateAction<string | boolean>>
   candidate: WikiData | null
-  onLearnMore?: () => void
   index: number
-}> = ({ expanded, candidate, onLearnMore, index, setExpanded }) => {
-  // const [cardState, setCardState] = useState<InfoCardState>('loading')
-
+}> = ({ expanded, candidate, index, setExpanded }) => {
+  // Toggle InfoCard expand / contract.
   const handleExpandButtonClick =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false)
     }
 
-  // Open Wikipedia page based on link at index
+  // Open Wikipedia URL in a new tab when user clicks "Learn More".
   const handleLearnMoreButtonClick = () => {
-    // TODO
-    console.log(candidate.url)
+    window.open(candidate.url, '_blank').focus()
   }
 
-  // if (cardState == 'loading' || cardState == 'error') {
-  //   return (
-  //     <Box mx={'4px'} my={'16px'}>
-  //       <Typography variant="body1">
-  //         {cardState == 'loading' || candidate == null
-  //           ? 'Loading...'
-  //           : 'Could not retrieve information for this query.'}
-  //       </Typography>
-  //     </Box>
-  //   )
-  // }
+  // Truncate and append ellipsis to the input string if longer than length.
+  const truncate = (input: string, length: number) => {
+    if (input.length > length) {
+      return input.substring(0, length) + '...'
+    }
+    return input
+  }
 
   return (
     <Accordion
@@ -51,13 +42,15 @@ const InfoCard: React.FC<{
       onChange={handleExpandButtonClick(`panel${index}`)}
     >
       <AccordionSummary expandIcon={<ExpandMore />}>
-        <Typography sx={{ width: '50%', flexShrink: 0 }}>
-          {candidate ? candidate.title : 'Loading...'}
+        <Typography variant="subtitle1" sx={{ width: '50%', flexShrink: 0 }}>
+          {candidate ? truncate(candidate.title, 40) : 'Loading...'}
         </Typography>
       </AccordionSummary>
       {candidate && (
         <>
-          <AccordionDetails>{candidate.description}</AccordionDetails>
+          <AccordionDetails>
+            <Typography variant="body2">{candidate.description}</Typography>
+          </AccordionDetails>
           <AccordionDetails>
             <Button
               style={{

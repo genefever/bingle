@@ -12,12 +12,13 @@ import { MessageType } from '../utils/types'
 import { fetchWikiData } from '../utils/api'
 import { WikiData } from '../utils/api'
 
+// Main component that shows the "Bingle search results" popup on the webpage when activated.
 const App: React.FC<{}> = () => {
   const [candidates, setCandidates] = useState<any>(new Array(3).fill(null))
   const [isActive, setIsActive] = useState<boolean>(false)
 
   useEffect(() => {
-    // Get message from background.ts to set fetch wiki data.
+    // Receive message from background.ts to fetch the ranked wiki data.
     chrome.runtime.onMessage.addListener((message: MessageType) =>
       handleMessage(message)
     )
@@ -30,10 +31,10 @@ const App: React.FC<{}> = () => {
 
   // Called when background.ts sends message to set isActive
   const handleMessage = (message: MessageType) => {
-    if (message.type === 'SET_POPUP') {
+    if (message.type === 'SET_QUERY') {
       fetchWikiData(message.query).then((res) => {
-        setIsActive(true)
         setCandidates(res)
+        setIsActive(true)
       })
     }
   }

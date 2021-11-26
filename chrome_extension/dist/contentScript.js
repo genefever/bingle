@@ -11879,7 +11879,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".overlayCard {\n  position: fixed;\n  right: 5%;\n  top: 10%;\n  width: 300px;\n  background-color: #f5f5f5 !important;\n  z-index: 99999;\n}\n\n.overlayCardHeader {\n  padding-top: 5px !important;\n  padding-bottom: 5px !important;\n  background: -webkit-linear-gradient(\n    45deg,\n    #fe6b8b 30%,\n    #ff8e53 90%\n  ) !important;\n}\n\n.css-nrdprl-MuiTypography-root {\n  color: #f5f5f5 !important;\n}\n", "",{"version":3,"sources":["webpack://./src/contentScript/contentScript.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,SAAS;EACT,QAAQ;EACR,YAAY;EACZ,oCAAoC;EACpC,cAAc;AAChB;;AAEA;EACE,2BAA2B;EAC3B,8BAA8B;EAC9B;;;;cAIY;AACd;;AAEA;EACE,yBAAyB;AAC3B","sourcesContent":[".overlayCard {\n  position: fixed;\n  right: 5%;\n  top: 10%;\n  width: 300px;\n  background-color: #f5f5f5 !important;\n  z-index: 99999;\n}\n\n.overlayCardHeader {\n  padding-top: 5px !important;\n  padding-bottom: 5px !important;\n  background: -webkit-linear-gradient(\n    45deg,\n    #fe6b8b 30%,\n    #ff8e53 90%\n  ) !important;\n}\n\n.css-nrdprl-MuiTypography-root {\n  color: #f5f5f5 !important;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".overlayCard {\n  position: fixed;\n  right: 5%;\n  top: 3%;\n  width: 333px;\n  background-color: #f5f5f5 !important;\n  z-index: 99999;\n}\n\n.overlayCardHeader {\n  padding-top: 5px !important;\n  padding-bottom: 5px !important;\n  background: -webkit-linear-gradient(\n    45deg,\n    #fe6b8b 30%,\n    #ff8e53 90%\n  ) !important;\n}\n\n.css-nrdprl-MuiTypography-root {\n  color: #f5f5f5 !important;\n}\n", "",{"version":3,"sources":["webpack://./src/contentScript/contentScript.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,SAAS;EACT,OAAO;EACP,YAAY;EACZ,oCAAoC;EACpC,cAAc;AAChB;;AAEA;EACE,2BAA2B;EAC3B,8BAA8B;EAC9B;;;;cAIY;AACd;;AAEA;EACE,yBAAyB;AAC3B","sourcesContent":[".overlayCard {\n  position: fixed;\n  right: 5%;\n  top: 3%;\n  width: 333px;\n  background-color: #f5f5f5 !important;\n  z-index: 99999;\n}\n\n.overlayCardHeader {\n  padding-top: 5px !important;\n  padding-bottom: 5px !important;\n  background: -webkit-linear-gradient(\n    45deg,\n    #fe6b8b 30%,\n    #ff8e53 90%\n  ) !important;\n}\n\n.css-nrdprl-MuiTypography-root {\n  color: #f5f5f5 !important;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -46209,32 +46209,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const InfoCard = ({ expanded, candidate, onLearnMore, index, setExpanded }) => {
-    // const [cardState, setCardState] = useState<InfoCardState>('loading')
+// Compenent that displays the WikiData.
+const InfoCard = ({ expanded, candidate, index, setExpanded }) => {
+    // Toggle InfoCard expand / contract.
     const handleExpandButtonClick = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
-    // Open Wikipedia page based on link at index
+    // Open Wikipedia URL in a new tab when user clicks "Learn More".
     const handleLearnMoreButtonClick = () => {
-        // TODO
-        console.log(candidate.url);
+        window.open(candidate.url, '_blank').focus();
     };
-    // if (cardState == 'loading' || cardState == 'error') {
-    //   return (
-    //     <Box mx={'4px'} my={'16px'}>
-    //       <Typography variant="body1">
-    //         {cardState == 'loading' || candidate == null
-    //           ? 'Loading...'
-    //           : 'Could not retrieve information for this query.'}
-    //       </Typography>
-    //     </Box>
-    //   )
-    // }
+    // Truncate and append ellipsis to the input string if longer than length.
+    const truncate = (input, length) => {
+        if (input.length > length) {
+            return input.substring(0, length) + '...';
+        }
+        return input;
+    };
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_1__["default"], { disableGutters: true, expanded: expanded === `panel${index}`, onChange: handleExpandButtonClick(`panel${index}`) },
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], { expandIcon: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_ExpandMore__WEBPACK_IMPORTED_MODULE_3__["default"], null) },
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], { sx: { width: '50%', flexShrink: 0 } }, candidate ? candidate.title : 'Loading...')),
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], { variant: "subtitle1", sx: { width: '50%', flexShrink: 0 } }, candidate ? truncate(candidate.title, 40) : 'Loading...')),
         candidate && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], null, candidate.description),
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], null,
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], { variant: "body2" }, candidate.description)),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], null,
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], { style: {
                         color: '#2196f3',
@@ -46282,33 +46279,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// Component that contains the 3 InfoCards.
 const Popup = ({ candidates }) => {
     // Expand the first panel by default.
     const [expanded, setExpanded] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('panel0');
-    // const handleLearnMoreButtonClick = (index: number) => {
-    //   // TODO open Wikipedia page based on link at index
-    //   console.log(index)
-    // }
-    // useEffect(() => {
-    //   // Get message from background.ts to update isActive
-    //   chrome.runtime.onMessage.addListener((message: MessageType) =>
-    //     handleMessage(message)
-    //   )
-    //   // Remove listener when this component unmounts
-    //   return () => {
-    //     chrome.runtime.onMessage.removeListener(handleMessage)
-    //   }
-    // }, [])
-    // const handleMessage = (message: MessageType) => {
-    //   window.alert('yea')
-    //   if (message.type === 'SET_QUERY') {
-    //     fetchWikiData(message.query).then((data) => {
-    //       setCandidates(data)
-    //     })
-    //     // setCandidates(fetchWikiData(message.query))
-    //     // setCandidates(message.candidates)
-    //   }
-    // }
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, candidates.map((candidate, index) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_InfoCard__WEBPACK_IMPORTED_MODULE_2__["default"], { expanded: expanded, setExpanded: setExpanded, index: index, key: index, candidate: candidate })))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Popup);
@@ -46354,6 +46328,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+// Make a call to api server to fetch the 3 most relevant Wiki data.
 function fetchWikiData(query) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = 'http://localhost:4000/api?' +
@@ -46368,39 +46343,6 @@ function fetchWikiData(query) {
         return data;
     });
 }
-// const OPEN_WEATHER_API_KEY = 'e5920fe1a6b8c2295e118ca469f38da6'
-// export interface WikiData {
-//   name: string
-//   main: {
-//     feels_like: number
-//     humidity: number
-//     pressure: number
-//     temp: number
-//     temp_max: number
-//     temp_min: number
-//   }
-//   weather: {
-//     description: string
-//     icon: string
-//     id: number
-//     main: string
-//   }[]
-//   wind: {
-//     deg: number
-//     speed: number
-//   }
-// }
-// export async function fetchWikiData(query: string): Promise<WikiData> {
-//   const res = await fetch(
-//     `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${OPEN_WEATHER_API_KEY}`
-//   )
-//   if (!res.ok) {
-//     throw new Error('Wiki data could not be retrieved.')
-//   }
-//   const data: WikiData = await res.json()
-//   //   console.log(data)
-//   return data
-// }
 
 
 /***/ }),
@@ -47755,11 +47697,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// Main component that shows the "Bingle search results" popup on the webpage when activated.
 const App = () => {
     const [candidates, setCandidates] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Array(3).fill(null));
     const [isActive, setIsActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-        // Get message from background.ts to set fetch wiki data.
+        // Receive message from background.ts to fetch the ranked wiki data.
         chrome.runtime.onMessage.addListener((message) => handleMessage(message));
         // Remove listener when this component unmounts
         return () => {
@@ -47768,10 +47711,10 @@ const App = () => {
     }, []);
     // Called when background.ts sends message to set isActive
     const handleMessage = (message) => {
-        if (message.type === 'SET_POPUP') {
+        if (message.type === 'SET_QUERY') {
             (0,_utils_api__WEBPACK_IMPORTED_MODULE_5__.fetchWikiData)(message.query).then((res) => {
-                setIsActive(true);
                 setCandidates(res);
+                setIsActive(true);
             });
         }
     };
