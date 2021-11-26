@@ -106,18 +106,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// This component shows the 'Bingle Display Settings' options popup.
+// The component is displayed when the Bingle chrome extension icon is clicked.
 const App = () => {
     const [options, setOptions] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-        // Set options from saved options in local storage.
+        // Set options from the saved options in local storage.
         (0,_utils_storage__WEBPACK_IMPORTED_MODULE_4__.getStoredOverlayOption)().then((options) => setOptions(options));
     }, []);
+    // Save the selected display options setting.
     const handleOptionsChange = (e) => {
         const selectedValue = e.target.value;
         (0,_utils_storage__WEBPACK_IMPORTED_MODULE_4__.setStoredOverlayOption)(selectedValue).then(() => {
-            setOptions(selectedValue);
+            setOptions(Object.assign(Object.assign({}, options), { overlayOption: selectedValue }));
         });
     };
+    // Don't display the popup if 'options' has not been set yet from local storage.
     if (!options) {
         return null;
     }

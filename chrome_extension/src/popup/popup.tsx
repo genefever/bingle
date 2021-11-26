@@ -13,25 +13,30 @@ import './popup.css'
 import {
   getStoredOverlayOption,
   setStoredOverlayOption,
-  LocalStorage,
+  LocalStorageOptions,
 } from '../utils/storage'
+import { SelectChangeEventHandler } from '../utils/types'
 
+// This component shows the 'Bingle Display Settings' options popup.
+// The component is displayed when the Bingle chrome extension icon is clicked.
 const App: React.FC<{}> = () => {
-  const [options, setOptions] = useState<LocalStorage | null>(null)
+  const [options, setOptions] = useState<LocalStorageOptions | null>(null)
 
   useEffect(() => {
-    // Set options from saved options in local storage.
+    // Set options from the saved options in local storage.
     getStoredOverlayOption().then((options) => setOptions(options))
   }, [])
 
-  const handleOptionsChange = (e) => {
+  // Save the selected display options setting.
+  const handleOptionsChange = (e: SelectChangeEventHandler) => {
     const selectedValue = e.target.value
 
     setStoredOverlayOption(selectedValue).then(() => {
-      setOptions(selectedValue)
+      setOptions({ ...options, overlayOption: selectedValue })
     })
   }
 
+  // Don't display the popup if 'options' has not been set yet from local storage.
   if (!options) {
     return null
   }

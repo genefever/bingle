@@ -4,3 +4,5 @@ interface SetQuery {
   query: string
 }
 export type MessageType = SetQuery
+
+export type SelectChangeEventHandler = React.ChangeEvent<HTMLInputElement>

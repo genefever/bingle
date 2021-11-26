@@ -1,11 +1,11 @@
-export interface LocalStorage {
+export interface LocalStorageOptions {
   overlayOption?: string
 }
 
-export type LocalStorageKeys = keyof LocalStorage
+export type LocalStorageOptionsKeys = keyof LocalStorageOptions
 
 export function setStoredOverlayOption(overlayOption: string): Promise<void> {
-  const val: LocalStorage = {
+  const val: LocalStorageOptions = {
     overlayOption,
   }
   return new Promise((resolve) => {
@@ -15,10 +15,10 @@ export function setStoredOverlayOption(overlayOption: string): Promise<void> {
   })
 }
 
-export function getStoredOverlayOption(): Promise<LocalStorage> {
-  const keys: LocalStorageKeys[] = ['overlayOption']
+export function getStoredOverlayOption(): Promise<LocalStorageOptions> {
+  const keys: LocalStorageOptionsKeys[] = ['overlayOption']
   return new Promise((resolve) => {
-    chrome.storage.local.get(keys, (res: LocalStorage) => {
+    chrome.storage.local.get(keys, (res: LocalStorageOptions) => {
       resolve(res)
     })
   })
