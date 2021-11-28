@@ -8,6 +8,7 @@ import {
 } from '@mui/material'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import { WikiData } from '../../utils/api'
+import './InfoCard.css'
 
 // Compenent that displays the WikiData.
 const InfoCard: React.FC<{
@@ -42,14 +43,19 @@ const InfoCard: React.FC<{
       onChange={handleExpandButtonClick(`panel${index}`)}
     >
       <AccordionSummary expandIcon={<ExpandMore />}>
-        <Typography variant="subtitle1" sx={{ width: '50%', flexShrink: 0 }}>
+        <Typography
+          className="infoCard-title"
+          sx={{ width: '50%', flexShrink: 0 }}
+        >
           {candidate ? truncate(candidate.title, 40) : 'Loading...'}
         </Typography>
       </AccordionSummary>
       {candidate && (
         <>
           <AccordionDetails>
-            <Typography variant="body2">{candidate.description}</Typography>
+            <Typography className="infoCard-body">
+              {candidate.description}
+            </Typography>
           </AccordionDetails>
           <AccordionDetails>
             <Button
@@ -61,7 +67,7 @@ const InfoCard: React.FC<{
               onClick={handleLearnMoreButtonClick}
               size="small"
             >
-              Learn More
+              <Typography className="infoCard-body">Learn More</Typography>
             </Button>
           </AccordionDetails>
         </>
