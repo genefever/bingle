@@ -19,9 +19,9 @@
 
 .MuiCardHeader-subheader {
   color: #f5f5f5 !important;
-  font-size: 16px !important;
+  font-size: 18px !important;
 }
 
-.MuiSvgIcon-root {
+.MuiButtonBase-root > .MuiSvgIcon-root {
   color: #f5f5f5 !important;
 }

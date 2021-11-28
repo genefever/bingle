@@ -45,9 +45,9 @@ const InfoCard: React.FC<{
       <AccordionSummary expandIcon={<ExpandMore />}>
         <Typography
           className="infoCard-title"
-          sx={{ width: '50%', flexShrink: 0 }}
+          sx={{ width: '90%', flexShrink: 0 }}
         >
-          {candidate ? truncate(candidate.title, 40) : 'Loading...'}
+          {candidate ? truncate(candidate.title, 30) : 'Loading...'}
         </Typography>
       </AccordionSummary>
       {candidate && (
