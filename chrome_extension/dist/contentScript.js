@@ -46432,6 +46432,28 @@ function fetchWikiData(query) {
 
 /***/ }),
 
+/***/ "./src/utils/types.ts":
+/*!****************************!*\
+  !*** ./src/utils/types.ts ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Messages": () => (/* binding */ Messages)
+/* harmony export */ });
+// Message types for chrome.runtime
+var Messages;
+(function (Messages) {
+    Messages[Messages["TOGGLE_ENABLE_EXTENSION"] = 0] = "TOGGLE_ENABLE_EXTENSION";
+    Messages[Messages["TOGGLE_IS_ACTIVE"] = 1] = "TOGGLE_IS_ACTIVE";
+    Messages[Messages["SET_QUERY"] = 2] = "SET_QUERY";
+})(Messages || (Messages = {}));
+
+
+/***/ }),
+
 /***/ "./node_modules/fontsource-roboto/files/roboto-all-400-normal.woff":
 /*!*************************************************************************!*\
   !*** ./node_modules/fontsource-roboto/files/roboto-all-400-normal.woff ***!
@@ -47765,13 +47787,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var fontsource_roboto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! fontsource-roboto */ "./node_modules/fontsource-roboto/index.css");
 /* harmony import */ var _components_Popup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Popup */ "./src/components/Popup/index.tsx");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Card/Card.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardHeader/CardHeader.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Card/Card.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardHeader/CardHeader.js");
 /* harmony import */ var _contentScript_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./contentScript.css */ "./src/contentScript/contentScript.css");
-/* harmony import */ var _mui_icons_material_Close__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/icons-material/Close */ "./node_modules/@mui/icons-material/Close.js");
-/* harmony import */ var _mui_material_IconButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material/IconButton */ "./node_modules/@mui/material/IconButton/IconButton.js");
-/* harmony import */ var _mui_material_ClickAwayListener__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material/ClickAwayListener */ "./node_modules/@mui/core/ClickAwayListener/ClickAwayListener.js");
-/* harmony import */ var _utils_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/api */ "./src/utils/api.ts");
+/* harmony import */ var _mui_icons_material_Close__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/icons-material/Close */ "./node_modules/@mui/icons-material/Close.js");
+/* harmony import */ var _mui_material_IconButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material/IconButton */ "./node_modules/@mui/material/IconButton/IconButton.js");
+/* harmony import */ var _mui_material_ClickAwayListener__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material/ClickAwayListener */ "./node_modules/@mui/core/ClickAwayListener/ClickAwayListener.js");
+/* harmony import */ var _utils_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/types */ "./src/utils/types.ts");
+/* harmony import */ var _utils_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/api */ "./src/utils/api.ts");
+
 
 
 
@@ -47796,13 +47820,13 @@ const App = () => {
     }, []);
     // Handle incoming chrome.runtime messages
     const handleMessage = (message) => {
-        if (message.type === 'SET_QUERY') {
-            (0,_utils_api__WEBPACK_IMPORTED_MODULE_5__.fetchWikiData)(message.query).then((res) => {
+        if (message.type === _utils_types__WEBPACK_IMPORTED_MODULE_5__.Messages.SET_QUERY) {
+            (0,_utils_api__WEBPACK_IMPORTED_MODULE_6__.fetchWikiData)(message.query).then((res) => {
                 setCandidates(res);
                 setIsActive(true);
             });
         }
-        else if (message.type === 'SET_IS_ACTIVE') {
+        else if (message.type === _utils_types__WEBPACK_IMPORTED_MODULE_5__.Messages.TOGGLE_IS_ACTIVE) {
             setIsActive(message.isActive);
         }
     };
@@ -47810,10 +47834,10 @@ const App = () => {
     const handleClose = () => {
         setIsActive(false);
     };
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, isActive && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_ClickAwayListener__WEBPACK_IMPORTED_MODULE_6__["default"], { onClickAway: handleClose },
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], { className: "overlayCard" },
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], { action: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_IconButton__WEBPACK_IMPORTED_MODULE_9__["default"], { className: "css-nrdprl-MuiTypography-root", onClick: handleClose },
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_Close__WEBPACK_IMPORTED_MODULE_10__["default"], null)), className: "overlayCardHeader", subheader: "Bingle search results" }),
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, isActive && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_ClickAwayListener__WEBPACK_IMPORTED_MODULE_7__["default"], { onClickAway: handleClose },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], { className: "overlayCard" },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], { action: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_IconButton__WEBPACK_IMPORTED_MODULE_10__["default"], { className: "css-nrdprl-MuiTypography-root", onClick: handleClose },
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_icons_material_Close__WEBPACK_IMPORTED_MODULE_11__["default"], null)), className: "overlayCardHeader", subheader: "Bingle search results" }),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Popup__WEBPACK_IMPORTED_MODULE_3__["default"], { candidates: candidates }))))));
 };
 const root = document.createElement('div');

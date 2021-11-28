@@ -1,5 +1,5 @@
 import { setStoredOverlayOption } from '../utils/storage'
-import { MessageType } from '../utils/types'
+import { MessageType, Messages } from '../utils/types'
 
 // Called when extension is first installed.
 chrome.runtime.onInstalled.addListener(() => {
@@ -15,7 +15,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // Listens to "Enable/Disable" settings changes from popup.tsx.
 chrome.runtime.onMessage.addListener((message: MessageType) => {
-  if (message.type === 'SET_ENABLE') {
+  if (message.type === Messages.TOGGLE_ENABLE_EXTENSION) {
     if (message.enable === true) {
       // Show Bingle chrome extension in the right-click dropdown.
       chrome.contextMenus.create({
@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
 chrome.contextMenus.onClicked.addListener((e) => {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {
-      type: 'SET_QUERY',
+      type: Messages.SET_QUERY,
       query: e.selectionText,
     })
   })

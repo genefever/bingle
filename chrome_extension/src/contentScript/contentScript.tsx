@@ -7,7 +7,7 @@ import './contentScript.css'
 import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
-import { MessageType } from '../utils/types'
+import { MessageType, Messages } from '../utils/types'
 import { fetchWikiData } from '../utils/api'
 import { WikiData } from '../utils/api'
 
@@ -32,12 +32,12 @@ const App: React.FC<{}> = () => {
 
   // Handle incoming chrome.runtime messages
   const handleMessage = (message: MessageType) => {
-    if (message.type === 'SET_QUERY') {
+    if (message.type === Messages.SET_QUERY) {
       fetchWikiData(message.query).then((res) => {
         setCandidates(res)
         setIsActive(true)
       })
-    } else if (message.type === 'SET_IS_ACTIVE') {
+    } else if (message.type === Messages.TOGGLE_IS_ACTIVE) {
       setIsActive(message.isActive)
     }
   }

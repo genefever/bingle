@@ -35,6 +35,27 @@ function getStoredOverlayOption() {
 }
 
 
+/***/ }),
+
+/***/ "./src/utils/types.ts":
+/*!****************************!*\
+  !*** ./src/utils/types.ts ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Messages": () => (/* binding */ Messages)
+/* harmony export */ });
+// Message types for chrome.runtime
+var Messages;
+(function (Messages) {
+    Messages[Messages["TOGGLE_ENABLE_EXTENSION"] = 0] = "TOGGLE_ENABLE_EXTENSION";
+    Messages[Messages["TOGGLE_IS_ACTIVE"] = 1] = "TOGGLE_IS_ACTIVE";
+    Messages[Messages["SET_QUERY"] = 2] = "SET_QUERY";
+})(Messages || (Messages = {}));
+
+
 /***/ })
 
 /******/ 	});
@@ -101,6 +122,8 @@ var __webpack_exports__ = {};
   \**************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/storage */ "./src/utils/storage.ts");
+/* harmony import */ var _utils_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/types */ "./src/utils/types.ts");
+
 
 // Called when extension is first installed.
 chrome.runtime.onInstalled.addListener(() => {
@@ -114,7 +137,7 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 // Listens to "Enable/Disable" settings changes from popup.tsx.
 chrome.runtime.onMessage.addListener((message) => {
-    if (message.type === 'SET_ENABLE') {
+    if (message.type === _utils_types__WEBPACK_IMPORTED_MODULE_1__.Messages.TOGGLE_ENABLE_EXTENSION) {
         if (message.enable === true) {
             // Show Bingle chrome extension in the right-click dropdown.
             chrome.contextMenus.create({
@@ -133,7 +156,7 @@ chrome.runtime.onMessage.addListener((message) => {
 chrome.contextMenus.onClicked.addListener((e) => {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {
-            type: 'SET_QUERY',
+            type: _utils_types__WEBPACK_IMPORTED_MODULE_1__.Messages.SET_QUERY,
             query: e.selectionText,
         });
     });

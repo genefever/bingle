@@ -1,18 +1,24 @@
 // Message types for chrome.runtime
-interface SetEnable {
-  type: 'SET_ENABLE'
+export enum Messages {
+  TOGGLE_ENABLE_EXTENSION,
+  TOGGLE_IS_ACTIVE,
+  SET_QUERY,
+}
+
+interface ToggleEnableExtension {
+  type: Messages.TOGGLE_ENABLE_EXTENSION
   enable: boolean
 }
-interface SetIsActive {
-  type: 'SET_IS_ACTIVE'
+interface ToggleIsActive {
+  type: Messages.TOGGLE_IS_ACTIVE
   isActive: boolean
 }
 interface SetQuery {
-  type: 'SET_QUERY'
+  type: Messages.SET_QUERY
   query: string
 }
 
-export type MessageType = SetEnable | SetIsActive | SetQuery
+export type MessageType = ToggleEnableExtension | ToggleIsActive | SetQuery
 
 // Event types
 export type SelectChangeEventHandler = React.ChangeEvent<HTMLInputElement>

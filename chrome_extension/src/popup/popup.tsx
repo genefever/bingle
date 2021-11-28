@@ -15,7 +15,7 @@ import {
   setStoredOverlayOption,
   LocalStorageOptions,
 } from '../utils/storage'
-import { SelectChangeEventHandler } from '../utils/types'
+import { Messages, SelectChangeEventHandler } from '../utils/types'
 
 // This component shows the 'Bingle Display Settings' options popup.
 // The component is displayed when the Bingle chrome extension icon is clicked.
@@ -38,7 +38,7 @@ const App: React.FC<{}> = () => {
 
     // Send message to background.ts to enable/disable contextMenu.
     chrome.runtime.sendMessage({
-      type: 'SET_ENABLE',
+      type: Messages.TOGGLE_ENABLE_EXTENSION,
       enable: selectedValue === 'enable',
     })
 
@@ -46,7 +46,7 @@ const App: React.FC<{}> = () => {
     if (selectedValue === 'disable') {
       chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {
-          type: 'SET_IS_ACTIVE',
+          type: Messages.TOGGLE_IS_ACTIVE,
           isActive: false,
         })
       })
