@@ -1,0 +1,29 @@
+{
+  "name": "bingle-server",
+  "version": "1.0.0",
+  "description": "Highlight Search Engine Server",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/genefever/bingle.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/genefever/bingle/issues"
+  },
+  "homepage": "https://github.com/genefever/bingle#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15",
+    "python-shell": "^3.0.1"
+  },
+  "engines": {
+    "node": "14.16.1"
+  }
+}
