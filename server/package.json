@@ -23,7 +23,7 @@
     "nodemon": "^2.0.15",
     "python-shell": "^3.0.1"
   },
-  "devDependencies": {
-    "@mui/icons-material": "^5.1.0"
+  "engines": {
+    "node": "14.16.1"
   }
 }
