@@ -17,7 +17,11 @@
   ) !important;
 }
 
-.css-nrdprl-MuiTypography-root {
+.MuiCardHeader-subheader {
   color: #f5f5f5 !important;
   font-size: 16px !important;
+}
+
+.MuiSvgIcon-root {
+  color: #f5f5f5 !important;
 }
