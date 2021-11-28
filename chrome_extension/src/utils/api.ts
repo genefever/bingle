@@ -6,8 +6,13 @@ export interface WikiData {
 
 // Make a call to the api server to fetch the 3 most relevant Wiki data.
 export async function fetchWikiData(query: string): Promise<any> {
+  // const url =
+  //   'http://localhost:4000/api?' +
+  //   new URLSearchParams({
+  //     q: query,
+  //   })
   const url =
-    'http://localhost:4000/api?' +
+    'https://bingleserver.herokuapp.com/api?' +
     new URLSearchParams({
       q: query,
     })
