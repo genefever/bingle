@@ -4,6 +4,7 @@ import time
 import metapy
 import pytoml
 from pathlib import Path
+import pandas as pd
 
 #file_name = "C:\\Users\\14088\\Documents\\Books\\CS410 - TIS\\final_compact_df.csv"
 
@@ -53,7 +54,9 @@ if __name__ == '__main__':
         for res in searchResults:
             outputFile = outputFile.append(lookupFile.loc[lookupFile['doc_id'] == res[0]])
         #outputFile.to_csv('searchResults.csv', index=False)
-
+    records = outputFile[['wikiId', 'title', 'new_corpus_text1']].to_records(index=False)
+    result = list(records)
+    print(result)
 
 
 
