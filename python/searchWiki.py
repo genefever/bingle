@@ -1,12 +1,13 @@
 import math
 import sys
 import time
+import os
 import metapy
 import pytoml
 from pathlib import Path
 import pandas as pd
-
-#file_name = "C:\\Users\\14088\\Documents\\Books\\CS410 - TIS\\final_compact_df.csv"
+import boto3
+from dotenv import load_dotenv
 
 def read_csv_pandas(file_name = "final_compact_df.csv"):
     return pd.read_csv(file_name, encoding="ISO-8859-1", engine='python')
@@ -39,26 +40,6 @@ def search(cfg_file, searchPhrase):
     results = ranker.score(idx, query, num_results)
     print("search results", results)
     return results
-
-
-if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        print("Usage: {} config.toml <query>".format(sys.argv[0]))
-        sys.exit(1)
-    cfg = sys.argv[1]
-    searchPhrase = sys.argv[2]
-    searchResults = search(cfg, searchPhrase)
-    lookupFile = read_csv_pandas()
-    outputFile = pd.DataFrame()
-    if len(searchResults) > 0:
-        for res in searchResults:
-            outputFile = outputFile.append(lookupFile.loc[lookupFile['doc_id'] == res[0]])
-        #outputFile.to_csv('searchResults.csv', index=False)
-    records = outputFile[['wikiId', 'title', 'new_corpus_text1']].to_records(index=False)
-    result = list(records)
-    print(result)
-
-
 
 def runSearch(cfg_file):
     # cfg = sys.argv[1]
@@ -93,3 +74,39 @@ def runSearch(cfg_file):
             arr_OkapiBM25.append(avg_p)
             print("Query {} average precision: {}".format(query_num + 1, avg_p))
     ev.map()
+
+# Main
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: {} config.toml <query>".format(sys.argv[0]))
+        sys.exit(1)
+
+    # Load AWS credentials
+    is_prod = os.environ.get('IS_HEROKU', None)
+    if is_prod:
+        # Load from Heroku
+        AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
+        AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
+    else:
+        # Load from .env file
+        load_dotenv()
+        AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
+
+    # Retrieve index from S3
+    s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID , aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    # TODO change 'file_name' to actual object name in S3
+    s3.download_file('bingleserverbucket', 'file_name', 'final_compact_df.csv')
+
+    cfg = sys.argv[1]
+    searchPhrase = sys.argv[2]
+    searchResults = search(cfg, searchPhrase)
+    lookupFile = read_csv_pandas()
+    outputFile = pd.DataFrame()
+    if len(searchResults) > 0:
+        for res in searchResults:
+            outputFile = outputFile.append(lookupFile.loc[lookupFile['doc_id'] == res[0]])
+        #outputFile.to_csv('searchResults.csv', index=False)
+    records = outputFile[['wikiId', 'title', 'new_corpus_text1']].to_records(index=False)
+    result = list(records)
+    print(result)
