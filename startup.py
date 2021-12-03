@@ -2,7 +2,7 @@ import os
 import boto3
 from dotenv import load_dotenv
 
-print("-----> Running startup.py...")
+print("-----> GENE Running startup.py...")
 final_compact_df_csv_file = 'final_compact_df.csv'
 os.chdir('./python')
 
