@@ -2,6 +2,7 @@ import os
 import boto3
 from dotenv import load_dotenv
 
+print("-----> Running startup.py...")
 final_compact_df_csv_file = 'final_compact_df.csv'
 os.chdir('./python')
 
@@ -20,5 +21,7 @@ else:
     S3_BUCKET_NAME=os.getenv('S3_BUCKET_NAME')
 
 # Retrieve index from S3
+print("-----> Downloading files...")
 s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID , aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
 s3.download_file(S3_BUCKET_NAME, final_compact_df_csv_file, final_compact_df_csv_file)
+print("-----> startup.py completed!")
