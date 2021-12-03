@@ -22,14 +22,14 @@ def load_ranker(cfg_file):
 
 
 def search(cfg_file, searchPhrase):
-    print('Searching for:....', searchPhrase)
-    print('Building or loading index...')
+    #print('Searching for:....', searchPhrase)
+    #print('Building or loading index...')
     idx = metapy.index.make_inverted_index(cfg_file)
-    print("number of docs:", idx.num_docs())
-    print("unique terms: ", idx.unique_terms())
-    print("average doc length: ", idx.avg_doc_length())
-    print("total corpus terms: ", idx.total_corpus_terms())
-    print()
+    #print("number of docs:", idx.num_docs())
+    #print("unique terms: ", idx.unique_terms())
+    #print("average doc length: ", idx.avg_doc_length())
+    #print("total corpus terms: ", idx.total_corpus_terms())
+    #print()
     query = metapy.index.Document()
     ranker = load_ranker(cfg_file)
     ev = metapy.index.IREval('config.toml')
@@ -38,20 +38,20 @@ def search(cfg_file, searchPhrase):
     num_results = 3
     query.content(searchPhrase.strip())
     results = ranker.score(idx, query, num_results)
-    print("search results", results)
+    #print("search results", results)
     return results
 
 def runSearch(cfg_file):
     # cfg = sys.argv[1]
     cfg = cfg_file
     # query_content = sys.argv[2]
-    print('Building or loading index...')
+    #print('Building or loading index...')
     idx = metapy.index.make_inverted_index(cfg)
-    print("number of docs:", idx.num_docs())
-    print("unique terms: ", idx.unique_terms())
-    print("average doc length: ", idx.avg_doc_length())
-    print("total corpus terms: ", idx.total_corpus_terms())
-    print()
+    #print("number of docs:", idx.num_docs())
+    #print("unique terms: ", idx.unique_terms())
+    #print("average doc length: ", idx.avg_doc_length())
+    #print("total corpus terms: ", idx.total_corpus_terms())
+    #print()
     query = metapy.index.Document()
     ranker = load_ranker(cfg)
     ev = metapy.index.IREval('config.toml')
@@ -67,36 +67,38 @@ def runSearch(cfg_file):
         for query_num, line in enumerate(query_file):
             query.content(line.strip())
             results = ranker.score(idx, query, num_results)
-            print("search results", results)
+            #print("search results", results)
             avg_p = ev.avg_p(results, query_start + query_num, num_results)
             f_bm25.write(str(avg_p))
             f_bm25.write("\n")
             arr_OkapiBM25.append(avg_p)
-            print("Query {} average precision: {}".format(query_num + 1, avg_p))
+            #print("Query {} average precision: {}".format(query_num + 1, avg_p))
     ev.map()
 
 # Main
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: {} config.toml <query>".format(sys.argv[0]))
-        sys.exit(1)
+    final_compact_df_csv_file = 'final_compact_df.csv'
+    os.chdir('./python')
 
-    # Load AWS credentials
-    is_prod = os.environ.get('IS_HEROKU', None)
-    if is_prod:
-        # Load from Heroku
-        AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
-        AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
-    else:
-        # Load from .env file
-        load_dotenv()
-        AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID')
-        AWS_SECRET_ACCESS_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
+    # Download 'final_compact_df.csv' if it doesn't exist.
+    if not os.path.exists(final_compact_df_csv_file):
+        # Load AWS credentials
+        is_prod = os.environ.get('IS_HEROKU', None)
+        if is_prod:
+            # Load from Heroku
+            AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
+            AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
+            S3_BUCKET_NAME=os.environ['S3_BUCKET_NAME']
+        else:
+            # Load from .env file
+            load_dotenv()
+            AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID')
+            AWS_SECRET_ACCESS_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
+            S3_BUCKET_NAME=os.getenv('S3_BUCKET_NAME')
 
-    # Retrieve index from S3
-    s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID , aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-    # TODO change 'file_name' to actual object name in S3
-    s3.download_file('bingleserverbucket', 'file_name', 'final_compact_df.csv')
+        # Retrieve index from S3
+        s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID , aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3.download_file(S3_BUCKET_NAME, final_compact_df_csv_file, final_compact_df_csv_file)
 
     cfg = sys.argv[1]
     searchPhrase = sys.argv[2]
