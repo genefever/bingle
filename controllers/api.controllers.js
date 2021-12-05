@@ -4,7 +4,7 @@ const path = require('path')
 const getRankedWikiData = (req, res) => {
   let query_str = req.query.q
 
-  // TODO delete pythonPath on deployment
+  // TODO delete pythonPath on deployment.
   let options = {
     mode: 'json',
     scriptPath: path.join(__dirname, '..', 'python'),
