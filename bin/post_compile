@@ -4,7 +4,8 @@ set -eo pipefail
 # The post_compile hook is run by heroku-buildpack-python
 
 echo "-----> I'm post-compile hook"
-
+ls .
+pwd
 mv /app/final_compact_df.csv /app/python/
 mv /app/wikipedia.dat /app/python/wikipedia/
 chmod 777 /app/python/wikipedia/wikipedia.dat
