@@ -68,7 +68,7 @@ print("-----> Downloading index files from AWS S3...")
 print("Path at terminal when executing this file")
 print(os.getcwd() + "\n")
 
-os.chdir('./python')
+os.chdir('/app/python')
 print("Path at terminal after chdir to python")
 print(os.getcwd() + "\n")
 
@@ -96,7 +96,7 @@ for filename in files:
 
 # List of tuples containing files/folders to download from S3
 # followed by their destination download path.
-files = [('final_compact_df.csv', '/app/python')] #, ('idx/', '/app/python'), ('wikipedia.dat', '/app/python/wikipedia')]
+files = [('final_compact_df.csv', '/app/python'), ('idx/', '/app/python'), ('wikipedia.dat', '/app/python/wikipedia')]
 
 for file, dest in files:
     download_dir(file, dest, S3_BUCKET_NAME)
