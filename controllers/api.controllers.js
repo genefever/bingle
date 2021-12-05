@@ -3,7 +3,7 @@ const path = require('path')
 
 const getRankedWikiData = (req, res) => {
   let config_toml = 'config.toml'
-  let query_str = 'req.query.q'
+  let query_str = req.query.q
 
   // TODO delete pythonPath on deployment
   let options = {

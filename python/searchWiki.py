@@ -102,7 +102,7 @@ if __name__ == "__main__":
         s3.download_file(S3_BUCKET_NAME, final_compact_df_csv_file, final_compact_df_csv_file)
 
     cfg = sys.argv[1]
-    searchPhrase = "Test" #sys.argv[2] # TODO revert back when done testing
+    searchPhrase = sys.argv[2]
     searchResults = search(cfg, searchPhrase)
     lookupFile = read_csv_pandas()
     outputFile = pd.DataFrame()
