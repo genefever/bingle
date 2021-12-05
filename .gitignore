@@ -4,3 +4,5 @@ dist
 .env
 .python-version
 final_compact_df.csv
+wikipedia.dat
+idx
