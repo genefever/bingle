@@ -64,32 +64,47 @@ print("-----> Running startup.py...")
 print("-----> Downloading index files from AWS S3...")
 
 
+
 print("Path at terminal when executing this file")
 print(os.getcwd() + "\n")
 
-print("This file path, relative to os.getcwd()")
-print(__file__ + "\n")
-
-print("This file full path (following symlinks)")
-full_path = os.path.realpath(__file__)
-print(full_path + "\n")
-
-print("This file directory and name")
-path, filename = os.path.split(full_path)
-print(path + ' --> ' + filename + "\n")
-
-print("This file directory only")
-print(os.path.dirname(full_path))
-
-'''
 os.chdir('./python')
+print("Path at terminal after chdir to python")
+print(os.getcwd() + "\n")
+
+print("Files before download")
+files = os.listdir('.')
+# Loop to print each filename separately
+for filename in files:
+    print(filename)
+
+# print("This file path, relative to os.getcwd()")
+# print(__file__ + "\n")
+
+# print("This file full path (following symlinks)")
+# full_path = os.path.realpath(__file__)
+# print(full_path + "\n")
+
+# print("This file directory and name")
+# path, filename = os.path.split(full_path)
+# print(path + ' --> ' + filename + "\n")
+
+# print("This file directory only")
+# print(os.path.dirname(full_path))
+
+
 
 # List of tuples containing files/folders to download from S3
 # followed by their destination download path.
-files = [('final_compact_df.csv', '.'), ('idx/', '.'), ('wikipedia.dat', 'wikipedia')]
+files = [('final_compact_df.csv', '/app/python')] #, ('idx/', '/app/python'), ('wikipedia.dat', '/app/python/wikipedia')]
 
 for file, dest in files:
     download_dir(file, dest, S3_BUCKET_NAME)
-'''
+
+print("Files after download")
+files = os.listdir('.')
+# Loop to print each filename separately
+for filename in files:
+    print(filename)
 
 print("-----> Completed startup.py!")
