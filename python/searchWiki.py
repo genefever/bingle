@@ -6,7 +6,7 @@ import metapy
 import pytoml
 from pathlib import Path
 import pandas as pd
-import boto3
+# import boto3
 from dotenv import load_dotenv
 import json
 
@@ -78,9 +78,10 @@ def runSearch(cfg_file):
 
 # Main
 if __name__ == "__main__":
-    final_compact_df_csv_file = 'final_compact_df.csv'
     os.chdir('./python')
 
+    '''
+    final_compact_df_csv_file = 'final_compact_df.csv'
     # Download 'final_compact_df.csv' if it doesn't exist.
     if not os.path.exists(final_compact_df_csv_file):
         # Load AWS credentials
@@ -100,6 +101,7 @@ if __name__ == "__main__":
         # Retrieve index from S3
         s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID , aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3.download_file(S3_BUCKET_NAME, final_compact_df_csv_file, final_compact_df_csv_file)
+    '''
 
     cfg = sys.argv[1]
     searchPhrase = sys.argv[2]
@@ -134,4 +136,5 @@ if __name__ == "__main__":
     # Convert dict to json object to return
     wiki_data_json = json.dumps(wiki_data_dict)
 
+    # Return to PythonShell in ../api.controller.js
     print(wiki_data_json)

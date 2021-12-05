@@ -9,7 +9,7 @@ const getRankedWikiData = (req, res) => {
     mode: 'json',
     scriptPath: path.join(__dirname, '..', 'python'),
     args: ['config.toml', query_str],
-    pythonPath: '/Users/genehorecka/.pyenv/versions/3.5.10/bin/python',
+    // pythonPath: '/Users/genehorecka/.pyenv/versions/3.5.10/bin/python',
   }
 
   PythonShell.run('searchWiki.py', options, function (err, results) {
