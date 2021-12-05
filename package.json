@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "postdeploy": "python startup.py"
+    "postinstall": "python startup.py"
   },
   "repository": {
     "type": "git",
