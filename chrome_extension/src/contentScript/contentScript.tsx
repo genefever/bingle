@@ -33,9 +33,9 @@ const App: React.FC<{}> = () => {
   // Handle incoming chrome.runtime messages
   const handleMessage = (message: MessageType) => {
     if (message.type === Messages.SET_QUERY) {
+      setIsActive(true)
       fetchWikiData(message.query).then((res) => {
         setCandidates(res)
-        setIsActive(true)
       })
     } else if (message.type === Messages.TOGGLE_IS_ACTIVE) {
       setIsActive(message.isActive)
