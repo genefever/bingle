@@ -14,8 +14,8 @@ const getRankedWikiData = (req, res) => {
   }
 
   PythonShell.run('searchWiki.py', options, function (err, results) {
-    if (err) throw err
-
+    if (err) throw err // TODO handle this error
+    // TODO comment me out on deployment
     console.log(results[0])
     res.send(results[0])
   })

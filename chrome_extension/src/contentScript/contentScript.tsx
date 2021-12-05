@@ -45,6 +45,7 @@ const App: React.FC<{}> = () => {
   // Close the popup
   const handleClose = () => {
     setIsActive(false)
+    setCandidates(new Array(3).fill(null))
   }
 
   return (
