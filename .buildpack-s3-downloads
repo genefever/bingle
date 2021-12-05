@@ -1,0 +1,3 @@
+s3://bingleserverbucket/final_compact_df.csv
+s3://bingleserverbucket/idx/
+s3://bingleserverbucket/wikipedia.dat
