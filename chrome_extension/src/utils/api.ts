@@ -21,7 +21,9 @@ export async function fetchWikiData(query: string): Promise<any> {
   const res = await fetch(url)
 
   if (!res.ok) {
-    throw new Error('Wiki data could not be retrieved.')
+    return res.json().then((res) => {
+      throw new Error(res.message)
+    })
   }
 
   const data = await res.json()

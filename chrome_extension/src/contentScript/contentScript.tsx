@@ -34,9 +34,19 @@ const App: React.FC<{}> = () => {
   const handleMessage = (message: MessageType) => {
     if (message.type === Messages.SET_QUERY) {
       setIsActive(true)
-      fetchWikiData(message.query).then((res) => {
-        setCandidates(res)
-      })
+      fetchWikiData(message.query)
+        .then((res) => {
+          setCandidates(res)
+        })
+        .catch((err) => {
+          setCandidates([
+            {
+              title: err.message,
+              description: '',
+              url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            },
+          ])
+        })
     } else if (message.type === Messages.TOGGLE_IS_ACTIVE) {
       setIsActive(message.isActive)
     }
