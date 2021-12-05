@@ -80,6 +80,16 @@ def runSearch(cfg_file):
 if __name__ == "__main__":
     os.chdir('./python')
 
+    # List of 3 tuples (title, description, url)
+    wiki_data_list = [('a','a','a'), ('b','a','a'), ('c','a','a')]
+    # Convert list to dict
+    wiki_data_dict = [dict(zip(("url", "title", "description"), x)) for x in wiki_data_list]
+    # Convert dict to json object to return
+    wiki_data_json = json.dumps(wiki_data_dict)
+
+    # Return to PythonShell in ../api.controller.js
+    print(wiki_data_json)
+
     '''
     final_compact_df_csv_file = 'final_compact_df.csv'
     # Download 'final_compact_df.csv' if it doesn't exist.
@@ -101,6 +111,7 @@ if __name__ == "__main__":
         # Retrieve index from S3
         s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID , aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3.download_file(S3_BUCKET_NAME, final_compact_df_csv_file, final_compact_df_csv_file)
+    '''
     '''
 
     cfg = sys.argv[1]
@@ -138,3 +149,4 @@ if __name__ == "__main__":
 
     # Return to PythonShell in ../api.controller.js
     print(wiki_data_json)
+    '''
