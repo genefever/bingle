@@ -5,6 +5,8 @@ set -eo pipefail
 
 echo "-----> I'm post-compile hook"
 
-
+mv /app/final_compact_df.csv /app/python/
+mv /app/wikipedia.dat /app/python/wikipedia/
+chmod 777 /app/python/wikipedia/wikipedia.dat
 
 echo "-----> Post-compile done"
