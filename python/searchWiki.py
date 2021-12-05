@@ -8,6 +8,7 @@ from pathlib import Path
 import pandas as pd
 import boto3
 from dotenv import load_dotenv
+import json
 
 def read_csv_pandas(file_name = "final_compact_df.csv"):
     return pd.read_csv(file_name, encoding="ISO-8859-1", engine='python')
@@ -101,7 +102,7 @@ if __name__ == "__main__":
         s3.download_file(S3_BUCKET_NAME, final_compact_df_csv_file, final_compact_df_csv_file)
 
     cfg = sys.argv[1]
-    searchPhrase = sys.argv[2]
+    searchPhrase = "Test" #sys.argv[2] # TODO revert back when done testing
     searchResults = search(cfg, searchPhrase)
     lookupFile = read_csv_pandas()
     outputFile = pd.DataFrame()
@@ -109,6 +110,28 @@ if __name__ == "__main__":
         for res in searchResults:
             outputFile = outputFile.append(lookupFile.loc[lookupFile['doc_id'] == res[0]])
         #outputFile.to_csv('searchResults.csv', index=False)
-    records = outputFile[['wikiId','title','new_corpus_text1','doc_id']].to_records(index=False)
-    result = list(records)
-    print(result)
+    records = outputFile[['wikiId','title','new_corpus_text1']].to_records(index=False)
+    
+    # List of 3 tuples (title, description, url)
+    wiki_data_list = list(records)
+    # Convert list to dict
+    wiki_data_dict = [dict(zip(("url", "title", "description"), x)) for x in wiki_data_list]
+    
+    for idx in range(len(wiki_data_dict)):
+        # Update url with wikipedia URL
+        urlKey = "url"
+        urlStr = wiki_data_dict[idx][urlKey]
+        urlStr = urlStr.replace('wikipedia-', 'https://en.wikipedia.org/?curid=')
+        wiki_data_dict[idx][urlKey] = urlStr
+
+        # Remove redundant title and leading whitespaces from description.
+        titleStr = wiki_data_dict[idx]["title"]
+        descriptionKey = "description"
+        descriptionStr = wiki_data_dict[idx][descriptionKey]
+        descriptionStr = descriptionStr.replace(titleStr, "", 1)
+        wiki_data_dict[idx][descriptionKey] = descriptionStr.lstrip()
+
+    # Convert dict to json object to return
+    wiki_data_json = json.dumps(wiki_data_dict)
+
+    print(wiki_data_json)
