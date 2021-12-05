@@ -14,6 +14,7 @@ const getRankedWikiData = (req, res) => {
 
   PythonShell.run('searchWiki.py', options, function (err, results) {
     if (err) {
+      console.log(err)
       return res.status(404).send({
         message: 'No results found.',
       })
