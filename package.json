@@ -4,7 +4,8 @@
   "description": "Highlight Search Engine Server",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "postdeploy": "python startup.py"
   },
   "repository": {
     "type": "git",
