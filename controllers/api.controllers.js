@@ -4,13 +4,18 @@ const path = require('path')
 const getRankedWikiData = (req, res) => {
   let query_str = req.query.q
 
-  // TODO remove pythonPath on deployment.
-  // TODO For testing locally, change the pythonPath to the path of your python 3.5.10 verion.
+  /* TODO: Developer must run Python 3.5.10 version for metapy library to work.
+   * Otherwise there will be an error. You might need to add it to your PATH.
+   * If you want to use a version of python NOT in your PATH, you should specify it
+   * below in options.pythonPath.
+   * Metapy Library: https://github.com/meta-toolkit/metapy
+   * PythonShell: https://www.npmjs.com/package/python-shell
+   */
   let options = {
     mode: 'json',
     scriptPath: path.join(__dirname, '..', 'python'),
     args: ['config.toml', query_str],
-    pythonPath: '/Users/genehorecka/.pyenv/versions/3.5.10/bin/python',
+    // pythonPath: '/Users/genehorecka/.pyenv/versions/3.5.10/bin/python',
   }
 
   PythonShell.run('searchWiki.py', options, function (err, results) {

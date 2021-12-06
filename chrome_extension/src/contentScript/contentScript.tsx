@@ -49,6 +49,7 @@ const App: React.FC<{}> = () => {
         })
     } else if (message.type === Messages.TOGGLE_IS_ACTIVE) {
       setIsActive(message.isActive)
+      setCandidates(new Array(3).fill(null))
     }
   }
 
