@@ -45,7 +45,7 @@ To run, you will need to have Python version 3.5 and the latest Node.js version 
 
   This project needs to run in Python version 3.5 environment because of the requirements from the [metapy library](https://github.com/meta-toolkit/metapy). If you don't have `python3.5` installed, one easy way to install it is to use [pyenv](https://github.com/pyenv/pyenv). For Windows, use [pyenv-win](https://github.com/pyenv/pyenv-installer).
 
-  `pyenv` is a tool for managing Python versions . You can use `pyenv` to install different Python versions and easily switch between them without interfering with the system Python version installed on your computer.
+  `pyenv` is a tool for managing Python versions. You can use `pyenv` to install different Python versions and easily switch between them without interfering with the system Python version installed on your computer.
 
   Once you have pyenv installed, run:
 
