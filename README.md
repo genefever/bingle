@@ -1,2 +1,122 @@
-# Bingle
-CS410 Highlight Search Engine
+# Bingle Highlight Search Engine
+
+Bingle is a Google Chrome extension that allows users to quickly access relevant Wikipedia information about some text on a website.
+
+---
+
+## Usage
+
+1. Install Bingle using the instructions below.
+2. Highlight some text on a webpage. This will act as the search query.
+3. Right click on the highlighted text and select 'Search on Bingle' from the dropdown list.
+4. Bingle will return the 3 most relevant search results based on the search query. The results will be displayed in a mini dropdown list at the top right corner of your Chrome web browser.
+5. Each dropdown card will contain a summary of the relevant search result along with a link to the corresponding Wikipedia page for that result.
+
+---
+
+## Requirements
+
+For development, you will only need to have Python version 3.5.10 and the latest Node.js installed.
+
+- ### Node.js
+
+  Visit the [official Node.js website](https://nodejs.org/) and download the installer. Also, be sure to have `git` available in your PATH, `npm` might need it (you can find git [here](https://git-scm.com/)).
+
+  You can find more information about the installation on the [official Node.js website](https://nodejs.org/) and the [official NPM website](https://npmjs.org/).
+
+  If the installation was successful, you should be able to run the following command.
+
+        $ node --version
+        v14.16.1                # Your version might differ
+
+        $ npm --version
+        7.17.0                  # Your version might differ
+
+- ### Python version 3.5
+
+  This project needs to run in Python version 3.5 because of the requirements from the [metapy library](https://github.com/meta-toolkit/metapy). If you don't have `python3.5` installed, one easy way to install it is to use [pyenv](https://github.com/pyenv/pyenv). `pyenv` is a tool for managing Python verisions. For Windows, use [pyenv-win](https://github.com/pyenv/pyenv-installer).
+
+  You can use `pyenv` to install different Python versions and easily switch between them without interfering with the system Python version installed on your computer.
+
+  Once you have pyenv installed, run:
+
+        $ pyenv install 3.5.10
+        $ pyenv local 3.5.10
+
+---
+
+## Install project
+
+    $ git clone git@github.com:genefever/bingle.git
+    $ cd bingle
+
+## Configure the app to run locally
+
+### API server
+
+The project's backend API server is built to run locally and receive requests on `http://localhost:4000/api`. There is currently no backend API server hosted online. However, if you would like to host this API backend server online, please fork and do so!
+
+1.  #### Configure the backend server.
+
+    From the `bingle/` project root directory, run:
+
+        $ npm install
+
+2.  #### Download and add the necessary index folder and files to the corresponding directories.
+
+    Within `bingle/python/`, you will need to add:
+
+    - `idx/`
+    - `final_compact_df.csv`
+
+    And within the `bingle/python/wikipidia/`, you will need to add:
+
+    - `wikipedia.dat`
+
+### Chrome extension
+
+For the Chrome extension client, you have 2 options:
+
+- #### Option 1:
+  Download and install the deployed Bingle Chrome extension from the Google Chrome Web Store.
+- #### Option 2:
+
+  Build and run the Chrome extension locally on your computer. This option allows you to modify and test the Chrome extension to your liking.
+
+  ##### Build instructions
+
+  From the `bingle/` project root
+  directory, run:
+
+        $ cd chrome_extension
+        $ npm install
+
+  After `npm install` completes, build the Chrome extension by running
+
+        $ npm start
+
+  This should create a `dist` folder in the `bingle/chrome_extension/` directory.
+
+  Then, go to your Chrome web browser and enter [chrome://extensions/](chrome://extensions/). In the top right corner of this page, turn on the `Developer mode` switch.
+
+  Finally, click the `Load unpacked` button on the top left corner of this page. Then, select and import the `dist` folder which contains all the build files for the locally created Chrome extension.
+
+  You have now successfully installed a local version of the Chrome extension on your browser!
+
+## Running the project
+
+In order for the Chrome extension to work properly, you must be running the local API server so that it can receive the requests from the extension.
+
+Open up a new terminal shell, enter the `bingle` project root directory, and run:
+
+    $ nodemon start
+
+Keep the server running for duration that you want to use the app. Enjoy!
+
+## Chrome extension build for production
+
+If you want a minimized `dist` build folder to upload on your Google Chrome web browser, from `bingle/chrome_extension`, run:
+
+    $ npm run build
+
+This will generate a minimized build within the `dist` folder. This is used mainly for deployment purposes when uploading on the Google Chrome Web Store so that the extension is as compact as possible.
