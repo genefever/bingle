@@ -1,10 +1,10 @@
 # Bingle Highlight Search Engine
 
-Bingle is a Google Chrome extension that allows users to quickly access relevant information about some word(s) on a webpage without having to open an additional browser tab to search for the query. This is done by highlighting the candidate word(s) to search for, right clicking on the highlighted text, and activating 'Search on Bingle'.
+Bingle is a Google Chrome extension that allows users to quickly access relevant information about some word(s) on a webpage without having to open another browser tab to search for the query. This is done by highlighting the candidate word(s) to search for, right-clicking on the highlighted word(s), then selecting 'Search on Bingle'.
 
-The retrieved information is then displayed on a mini-card in the top right corner of the user's currently opened Chrome browser tab. The information source is from a curated Wikipedia dataset.
+The highlighted words act as a query that will be fed into a BM25 retrieval algorithm. After the retrieval completes, Bingle will select from these results the 3 most relevant Wikipedia articles and their corresponding summaries and display them to the user in a mini-card located at the top right corner of the page.
 
-This project was developed jointly by Gene Horecka, Mony Chhen, Shubha Sundar, and Sushma Ponna for University of Illinois at Urbana-Champaign's CS410: Text Information Systems (Fall 2021).
+This project was developed jointly by Gene Horecka, Mony Chhen, Shubha Sundar, and Sushma Ponna for the University of Illinois at Urbana-Champaign's CS410: Text Information Systems (Fall 2021).
 
 ---
 
