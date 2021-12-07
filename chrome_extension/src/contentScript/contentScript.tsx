@@ -43,7 +43,7 @@ const App: React.FC<{}> = () => {
             {
               title: err.message,
               description: '',
-              url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+              url: 'https://github.com/genefever/bingle/blob/main/README.md',
             },
           ])
         })
