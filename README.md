@@ -54,7 +54,7 @@ To run, you will need to have Python version 3.5 and the latest Node.js version 
 
 - ### pip install
 
-  After you have your Python environment set up, then from the `bingle/` project root directory, run
+  After you have your Python environment set up, then from the `bingle/` project root directory, run:
 
         $ pip install -r requirements.txt
 
@@ -98,12 +98,12 @@ For the Chrome extension client, you have 2 options:
   ##### Build instructions
 
   From the `bingle/` project root
-  directory, run
+  directory, run:
 
         $ cd chrome_extension
         $ npm install
 
-  After `npm install` completes, build the Chrome extension by running
+  After `npm install` completes, build the Chrome extension by running:
 
         $ npm start
 
@@ -119,7 +119,7 @@ For the Chrome extension client, you have 2 options:
 
 In order for the Chrome extension to work properly, you must be running the local API server on your computer so that it can receive the requests from the extension.
 
-Open up a new terminal shell, enter the `bingle/` project root directory, then run
+Open up a new terminal shell, enter the `bingle/` project root directory, then run:
 
     $ nodemon start
 
@@ -127,7 +127,7 @@ Keep the server running for duration that you want to use the app. You are now r
 
 ## Chrome extension minimized build for production
 
-If you want a minimized build version of the Chrome extension, then from `bingle/chrome_extension`, run
+If you want a minimized build version of the Chrome extension, then from `bingle/chrome_extension`, run:
 
     $ npm run build
 
