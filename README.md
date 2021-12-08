@@ -11,8 +11,8 @@ This project was developed jointly by Gene Horecka, Mony Chhen, Shubha Sundar, a
 ## Usage
 
 1. Install Bingle using the instructions below.
-2. Highlight some text on a webpage. This will act as the search query.
-3. Right click on the highlighted text and select 'Search on Bingle' from the dropdown list.
+2. Highlight some words(s) on a webpage. This will act as the search query.
+3. Right click on the highlighted word(s) and select 'Search on Bingle' from the dropdown list.
 4. Bingle will return the 3 most relevant search results based on the search query. The results will be displayed in a mini dropdown list at the top right corner of your Chrome web browser.
 5. Each dropdown card will contain a summary of the relevant search result along with a link to the corresponding Wikipedia page for that result.
 
