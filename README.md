@@ -123,11 +123,11 @@ Open up a new terminal shell, enter the `bingle/` project root directory, then r
 
     $ nodemon start
 
-Keep the server running for duration that you want to use the app. You are now ready to use the extension!
+Keep the server running for the duration that you want to use the app. You are now ready to use the extension!
 
-## Chrome extension minimized build for production
+## Chrome extension minimized production build
 
-If you want a minimized build version of the Chrome extension, then from `bingle/chrome_extension`, run:
+If you want a minimized build version of the Chrome extension, then from within `bingle/chrome_extension`, run:
 
     $ npm run build
 
