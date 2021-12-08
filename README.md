@@ -131,4 +131,4 @@ If you want a minimized build version of the Chrome extension, then from within 
 
     $ npm run build
 
-This will generate a minimized build within the `dist` folder. This is used mainly for deployment purposes when uploading on the Google Chrome Web Store so that the extension is as compact as possible.
+This will generate a minimized build within the `dist` folder. This is mainly for deployment purposes (for example when uploading to the Google Chrome Web Store) so that the extension is as compact as possible.
