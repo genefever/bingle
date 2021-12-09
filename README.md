@@ -1,6 +1,6 @@
 # Bingle Highlight Search Engine
 
-#### Demo: https://www.youtube.com/watch?v=7Xv4ZQc5zuk
+### Demo: https://www.youtube.com/watch?v=7Xv4ZQc5zuk
 
 Bingle is a Google Chrome extension that allows users to quickly access relevant information about some word(s) on a webpage without having to open another browser tab to search for the query. This is done by highlighting the candidate word(s) to search for, right-clicking on the highlighted word(s), and then selecting 'Search on Bingle'.
 
