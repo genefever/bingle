@@ -117,6 +117,8 @@ For the Chrome extension client, you have 2 options:
 
   You have now successfully installed a local version of the Chrome extension on your browser!
 
+  <b>Note:</b> After installation, if you don't see the extension pop up after clicking "Search on Bingle", refresh the page and try again.
+
 ## Running the project
 
 In order for the Chrome extension to work properly, you must be running the local API server on your computer so that it can receive the requests from the extension.
