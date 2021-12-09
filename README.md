@@ -80,7 +80,7 @@ The project's backend API server is built to run locally and receives HTTP GET r
 
     Within `bingle/python/`, you will need to add:
 
-    - [`idx/`](https://drive.google.com/drive/folders/1LxOiHrWWlzrxMpOgy5QrllapuGNqYWYy?usp=sharing)
+    - [`idx/`](https://drive.google.com/drive/folders/1LxOiHrWWlzrxMpOgy5QrllapuGNqYWYy?usp=sharing) directory (including all its contents)
     - [`final_compact_df.csv`](https://drive.google.com/file/d/1nWawg9RCxungWdR6_JdqmTwfC4xoju-p/view?usp=sharing)
 
     And within the `bingle/python/wikipidia/`, you will also need to add:
