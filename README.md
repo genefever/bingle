@@ -123,9 +123,21 @@ In order for the Chrome extension to work properly, you must be running the loca
 
 Open up a new terminal shell, enter the `bingle/` project root directory, then run:
 
+    $ npm start
+
+Alternatively, you can use `nodemon` to run the server. [Nodemon](https://www.npmjs.com/package/nodemon) is a Node.js tool that monitors for any changes in the server source code and automatically restarts the server. To use, make sure you have `nodemon` installed globally on your computer.
+
+    $ npm install -g nodemon
+
+Then run:
+
     $ nodemon start
 
-Keep the server running for the duration that you want to use the app. You are now ready to use the extension!
+The server is now running.
+
+Keep the server running for the duration that you are using the app (i.e. don't terminate the server process in the terminal while using the extension).
+
+You are now ready to use the extension!
 
 ## Chrome extension minimized production build
 
