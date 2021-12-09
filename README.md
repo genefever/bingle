@@ -85,7 +85,7 @@ The project's backend API server is built to run locally and receives HTTP GET r
 
     And within the `bingle/python/wikipidia/`, you will also need to add:
 
-    - `wikipedia.dat`
+    - [`wikipedia.dat`](https://drive.google.com/file/d/1GxQFsFEWKTvtRqqV8TObkmJ4cixf23lN/view?usp=sharing)
 
 ### Chrome extension
 
