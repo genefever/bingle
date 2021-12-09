@@ -1,5 +1,7 @@
 # Bingle Highlight Search Engine
 
+#### Demo: https://www.youtube.com/watch?v=7Xv4ZQc5zuk
+
 Bingle is a Google Chrome extension that allows users to quickly access relevant information about some word(s) on a webpage without having to open another browser tab to search for the query. This is done by highlighting the candidate word(s) to search for, right-clicking on the highlighted word(s), and then selecting 'Search on Bingle'.
 
 The highlighted words act as a query that will be fed into a BM25 retrieval algorithm. After the retrieval completes, Bingle will select from these results the 3 most relevant Wikipedia articles and their corresponding summaries and display them to the user in a mini-card located at the top right corner of the page.
@@ -14,7 +16,7 @@ This project was developed jointly by Gene Horecka, Mony Chhen, Shubha Sundar, a
 2. Highlight some words(s) on a webpage. This will act as the search query.
 3. Right click on the highlighted word(s) and select 'Search on Bingle' from the dropdown list.
 4. Bingle will return the 3 most relevant search results based on the search query. The results will be displayed in a mini dropdown list at the top right corner of your Chrome web browser.
-5. Each dropdown card will contain a summary of the relevant search result along with a link to the corresponding Wikipedia page for that result.
+5. Each dropdown card will contain a summary of the most relevant search results, along with a link to the corresponding Wikipedia page for that result.
 
 ---
 
@@ -78,8 +80,8 @@ The project's backend API server is built to run locally and receives HTTP GET r
 
     Within `bingle/python/`, you will need to add:
 
-    - `idx/`
-    - `final_compact_df.csv`
+    - [`idx/`](https://drive.google.com/drive/folders/1LxOiHrWWlzrxMpOgy5QrllapuGNqYWYy?usp=sharing)
+    - [`final_compact_df.csv`](https://drive.google.com/file/d/1nWawg9RCxungWdR6_JdqmTwfC4xoju-p/view?usp=sharing)
 
     And within the `bingle/python/wikipidia/`, you will also need to add:
 
