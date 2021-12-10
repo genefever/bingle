@@ -33,18 +33,30 @@ const App: React.FC<{}> = () => {
   // Handle incoming chrome.runtime messages
   const handleMessage = (message: MessageType) => {
     if (message.type === Messages.SET_QUERY) {
-      fetchWikiData(message.query).then((res) => {
-        setCandidates(res)
-        setIsActive(true)
-      })
+      setIsActive(true)
+      fetchWikiData(message.query)
+        .then((res) => {
+          setCandidates(res)
+        })
+        .catch((err) => {
+          setCandidates([
+            {
+              title: err.message,
+              description: '',
+              url: 'https://github.com/genefever/bingle/blob/main/README.md',
+            },
+          ])
+        })
     } else if (message.type === Messages.TOGGLE_IS_ACTIVE) {
       setIsActive(message.isActive)
+      setCandidates(new Array(3).fill(null))
     }
   }
 
   // Close the popup
   const handleClose = () => {
     setIsActive(false)
+    setCandidates(new Array(3).fill(null))
   }
 
   return (

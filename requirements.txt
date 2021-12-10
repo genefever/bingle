@@ -1,0 +1,4 @@
+pandas==0.25.3
+pytoml==0.1.21
+metapy==0.2.13
+python-dotenv==0.19.2
