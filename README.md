@@ -8,6 +8,9 @@ The highlighted words act as a query that will be fed into a BM25 retrieval algo
 
 This project was developed jointly by Gene Horecka, Mony Chhen, Shubha Sundar, and Sushma Ponna for the University of Illinois at Urbana-Champaign's CS410 Course: Text Information Systems (Fall 2021).
 
+Link to presentation: https://docs.google.com/presentation/d/1Gw-415CcuYEyUDJ7SoFP8admqfXQamVu/edit#slide=id.g106dd29f0da_2_0
+Link to Documentation: https://docs.google.com/document/d/1Cezl0lACKC9xluk9trGFjbmC1xamqXPR9Ig0LBI58CA/edit#
+
 ---
 
 ## Usage
